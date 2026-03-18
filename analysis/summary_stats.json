@@ -1,0 +1,18 @@
+{
+  "sessions": 10,
+  "total_llm_calls": 223,
+  "total_errors": 0,
+  "error_rate_pct": 0.0,
+  "total_req_mb": 25.95,
+  "total_resp_mb": 4.46,
+  "overall_req_resp_ratio": 5.8,
+  "avg_req_kb_per_call": 119.2,
+  "median_latency_ms": 6331,
+  "p95_latency_ms": 20308,
+  "max_latency_ms": 31093,
+  "avg_req_growth_pct": 60.2,
+  "max_req_growth_pct": 137.7,
+  "max_req_growth_session": "S07",
+  "most_calls_session": "S09",
+  "highest_avg_latency_session": "S02"
+}
