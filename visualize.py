@@ -255,7 +255,7 @@ def chart_cache_payload_breakdown(sessions, out, plt):
     system_cached / system_uncached / tools / messages_cached / messages_uncached
     """
     # Skip sessions that don't have cache columns (old CSVs)
-    if "cache_total_chars" not in sessions[0]:
+    if "system_prompt_chars" not in sessions[0]:
         print("  Skipped: 09_cache_payload_breakdown.png (no cache columns — run new analyze.py)")
         return
 
@@ -263,24 +263,24 @@ def chart_cache_payload_breakdown(sessions, out, plt):
     sids = [r["session_id"] for r in sessions]
     tc   = [max(f(r["cache_total_chars"]), 1) for r in sessions]
 
-    sys_c  = [f(r["cache_system_cached_chars"])   / tc[i] * 100 for i, r in enumerate(sessions)]
-    sys_u  = [f(r["cache_system_uncached_chars"])  / tc[i] * 100 for i, r in enumerate(sessions)]
-    tools  = [f(r["cache_tools_chars"])            / tc[i] * 100 for i, r in enumerate(sessions)]
-    msg_c  = [f(r["cache_messages_cached_chars"])  / tc[i] * 100 for i, r in enumerate(sessions)]
-    msg_u  = [f(r["cache_messages_uncached_chars"])/ tc[i] * 100 for i, r in enumerate(sessions)]
+    sys_p  = [f(r["system_prompt_chars"])   / tc[i] * 100 for i, r in enumerate(sessions)]
+    tools  = [f(r["tools_chars"])           / tc[i] * 100 for i, r in enumerate(sessions)]
+    prior  = [f(r["prior_history_chars"])   / tc[i] * 100 for i, r in enumerate(sessions)]
+    bndry  = [f(r["new_input_chars"])  / tc[i] * 100 for i, r in enumerate(sessions)]
+    bhead  = [f(r["billing_header_chars"])  / tc[i] * 100 for i, r in enumerate(sessions)]
 
     x = np.arange(len(sids))
     fig, ax = plt.subplots(figsize=(13, 6))
 
-    b1 = ax.bar(x, sys_c,  label="System (cached)",        color="#1D9E75", alpha=0.9)
-    b2 = ax.bar(x, sys_u,  bottom=sys_c,
-                label="System (uncached)",      color="#95D5B2", alpha=0.9)
-    b3 = ax.bar(x, tools,  bottom=[a+b for a,b in zip(sys_c, sys_u)],
-                label="Tools (no cache_control)", color="#534AB7", alpha=0.75)
-    b4 = ax.bar(x, msg_c,  bottom=[a+b+c for a,b,c in zip(sys_c, sys_u, tools)],
-                label="Messages (cached)",      color="#BA7517", alpha=0.9)
-    b5 = ax.bar(x, msg_u,  bottom=[a+b+c+d for a,b,c,d in zip(sys_c, sys_u, tools, msg_c)],
-                label="Messages (uncached)",    color="#D85A30", alpha=0.75)
+    ax.bar(x, sys_p, label="System prompt (cache read)",   color="#1D9E75", alpha=0.9)
+    ax.bar(x, tools, bottom=sys_p,
+           label="Tools (cache read)",                      color="#534AB7", alpha=0.75)
+    ax.bar(x, prior, bottom=[a+b for a,b in zip(sys_p, tools)],
+           label="Prior history (cache read)",              color="#185FA5", alpha=0.75)
+    ax.bar(x, bndry, bottom=[a+b+c for a,b,c in zip(sys_p, tools, prior)],
+           label="New input / boundary block (cache write)",color="#BA7517", alpha=0.9)
+    ax.bar(x, bhead, bottom=[a+b+c+d for a,b,c,d in zip(sys_p, tools, prior, bndry)],
+           label="Billing header (uncached)",               color="#D85A30", alpha=0.75)
 
     ax.set_xticks(x)
     ax.set_xticklabels(sids)
@@ -294,54 +294,54 @@ def chart_cache_payload_breakdown(sessions, out, plt):
     print("  Saved: 09_cache_payload_breakdown.png")
 
 
-# ── Chart 10: V1 vs V2 cached % side by side ─────────────────────────────────
+# ── Chart 10: Cache read % per session ───────────────────────────────────────
 def chart_cache_v1_vs_v2(sessions, out, plt):
     """
-    Side-by-side bars showing cached % under two interpretations:
-    V1 = tools uncached (strict), V2 = tools cached (constant content)
+    Bar chart showing cache_read % per session.
     """
-    if "v1_cached_pct" not in sessions[0]:
-        print("  Skipped: 10_cache_v1_vs_v2.png (no cache columns — run new analyze.py)")
+    if "cache_read_pct" not in sessions[0]:
+        print("  Skipped: 10_cache_read_pct.png (no cache columns — run new analyze.py)")
         return
 
     import numpy as np
-    sids = [r["session_id"] for r in sessions]
-    v1   = [f(r["v1_cached_pct"]) for r in sessions]
-    v2   = [f(r["v2_cached_pct"]) for r in sessions]
-    x    = np.arange(len(sids))
-    w    = 0.38
+    sids      = [r["session_id"] for r in sessions]
+    read_pct  = [f(r["cache_read_pct"])  for r in sessions]
+    write_pct = [f(r["cache_write_pct"]) for r in sessions]
+    unc_pct   = [f(r["billing_header_pct"])    for r in sessions]
+    x = np.arange(len(sids))
+    w = 0.55
 
     fig, ax = plt.subplots(figsize=(13, 5))
-    bars1 = ax.bar(x - w/2, v1, w, label="V1 — tools as UNCACHED (strict)", color="#D85A30", alpha=0.85)
-    bars2 = ax.bar(x + w/2, v2, w, label="V2 — tools as CACHED (constant)", color="#1D9E75", alpha=0.85)
+    ax.bar(x, read_pct,  w, label="Cache read (system + tools + prior history)", color="#1D9E75", alpha=0.85)
+    ax.bar(x, write_pct, w, bottom=read_pct,
+           label="Cache write (new user input)", color="#BA7517", alpha=0.85)
+    ax.bar(x, unc_pct,   w, bottom=[a+b for a,b in zip(read_pct, write_pct)],
+           label="Uncached (billing header)", color="#D85A30", alpha=0.75)
 
-    for bar, val in zip(bars1, v1):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.5,
-                f"{val:.0f}%", ha="center", va="bottom", fontsize=8, color="#D85A30")
-    for bar, val in zip(bars2, v2):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.5,
-                f"{val:.0f}%", ha="center", va="bottom", fontsize=8, color="#1D9E75")
+    for xi, (r, w2, u) in enumerate(zip(read_pct, write_pct, unc_pct)):
+        ax.text(xi, r + 0.5, f"{r:.0f}%", ha="center", va="bottom", fontsize=8, color="#1D9E75")
 
     ax.set_xticks(x)
     ax.set_xticklabels(sids)
-    ax.set_ylabel("Cached % of payload")
+    ax.set_ylabel("% of payload")
     ax.set_ylim(0, 110)
-    ax.set_title("How much is cached? Depends on whether you count tools\n"
-                 "V1: only ephemeral-marked content  |  V2: tools treated as constant (cached by content)")
+    ax.set_title("Cache read vs cache write vs uncached per session\n"
+                 "cache_read = system + tools + prior history  |  cache_write = new user input")
     ax.legend()
     fig.tight_layout()
-    fig.savefig(out / "10_cache_v1_vs_v2.png")
+    fig.savefig(out / "10_cache_read_pct.png")
     plt.close(fig)
-    print("  Saved: 10_cache_v1_vs_v2.png")
+    print("  Saved: 10_cache_read_pct.png")
 
 
-# ── Chart 11: Cache % over turns — V2 (tools as cached) ─────────────────────
+# ── Chart 11: Cache read % over turns ────────────────────────────────────────
 def chart_cache_pct_over_turns(turns, out, plt):
     """
-    Line chart: how does V2 cached % (tools counted as cached) change as sessions grow?
-    Also saves a V1 version for reference.
+    Line chart: cache_read % per turn per session.
+    Shows how the fraction of already-cached content changes as sessions grow.
+    Also saves 11b: cache_write % per turn (how much is new each call).
     """
-    if "v2_cached_pct" not in turns[0]:
+    if "cache_read_pct" not in turns[0]:
         print("  Skipped: 11_cache_pct_over_turns.png (no cache columns — run new analyze.py)")
         return
 
@@ -355,45 +355,184 @@ def chart_cache_pct_over_turns(turns, out, plt):
 
     palette = cm.tab10(np.linspace(0, 1, len(by_session)))
 
-    # V2 chart (primary — tools as cached)
-    fig, ax = plt.subplots(figsize=(13, 6))
+    # Chart 11: all lines start from a single 0 point at turn 1,
+    # then connect to their turn 2+ values on a tight Y axis.
+    # S10 turn 21 restart (also 0%) is annotated as a special case.
+    vals_t2 = [f(r["cache_read_pct"]) for r in turns
+               if r.get("cache_parse_ok") in (True, "True")
+               and i(r["turn"]) > 1 and f(r["cache_read_pct"]) > 0]
+    y_min = min(vals_t2) - 2 if vals_t2 else 70
+    y_max = max(vals_t2) + 1 if vals_t2 else 100
+
+    fig = plt.figure(figsize=(13, 7))
+
+    # Two subplots sharing x: top = tight Y axis (turns 2+), bottom = turn 1 dot at 0
+    ax_main = fig.add_axes([0.08, 0.25, 0.88, 0.65])  # main chart
+    ax_zero = fig.add_axes([0.08, 0.08, 0.88, 0.12])  # small strip at bottom for 0%
+
+    # Share x axis
+    ax_zero.sharex(ax_main)
+
     for (sid, rows), color in zip(sorted(by_session.items()), palette):
         rows = sorted(rows, key=lambda r: i(r["turn"]))
-        x = [i(r["turn"]) for r in rows]
-        y = [f(r["v2_cached_pct"]) for r in rows]
         label_str = rows[0]["label"] if rows else sid
-        ax.plot(x, y, marker="o", markersize=3.5, label=f"{sid} {label_str}",
-                color=color, linewidth=1.8)
 
-    ax.set_xlabel("LLM call (turn number within session)")
-    ax.set_ylabel("Cached % of payload (tools counted as cached)")
-    ax.set_title("Cache efficiency drops as sessions grow\n"
-                 "Tools treated as constant (cached) — only history is truly uncached")
-    ax.legend(loc="upper right", fontsize=8, ncol=2)
-    fig.tight_layout()
+        # Turn 1 dot in bottom strip
+        ax_zero.plot(1, 0, marker="o", markersize=5, color=color, zorder=3)
+
+        # Turns 2+ in main chart — skip zeros (restarts) except annotate S10
+        x_main, y_main = [], []
+        for r in rows:
+            t = i(r["turn"])
+            v = f(r["cache_read_pct"])
+            if t == 1:
+                continue
+            if v == 0:
+                # Annotate S10 restart
+                ax_main.annotate("S10\nrestart", xy=(t, y_min + 1),
+                                 xytext=(t + 0.8, y_min + 3),
+                                 fontsize=7, color=color,
+                                 arrowprops=dict(arrowstyle="->", color=color, lw=0.8))
+                continue
+            x_main.append(t)
+            y_main.append(v)
+
+        if x_main:
+            ax_main.plot(x_main, y_main, marker="o", markersize=3.5,
+                         label=f"{sid} {label_str}", color=color, linewidth=1.8)
+
+        # Connecting line from turn 1 (bottom strip) to turn 2 (main chart)
+        if x_main:
+            # Draw a dashed line bridging the gap between the two axes
+            con = plt.matplotlib.patches.ConnectionPatch(
+                xyA=(1, 0), xyB=(x_main[0], y_main[0]),
+                coordsA="data", coordsB="data",
+                axesA=ax_zero, axesB=ax_main,
+                color=color, linestyle="dashed", linewidth=0.8, alpha=0.5
+            )
+            fig.add_artist(con)
+
+    # Style main axis
+    ax_main.set_ylim(y_min, y_max)
+    ax_main.set_ylabel("Cache read % of payload")
+    ax_main.set_title("Cache read % per turn — all sessions start at 0% (turn 1)\n"
+                      "Axis break shows jump to turns 2+ range", pad=10)
+    ax_main.legend(loc="upper right", fontsize=8, ncol=2)
+    ax_main.spines['bottom'].set_visible(False)
+    ax_main.tick_params(bottom=False, labelbottom=False)
+
+    # Style zero strip
+    ax_zero.set_ylim(-0.5, 0.8)
+    ax_zero.set_yticks([0])
+    ax_zero.set_yticklabels(["0%"])
+    ax_zero.set_xlabel("LLM call (turn number within session)")
+    ax_zero.spines['top'].set_visible(False)
+    ax_zero.set_xlim(ax_main.get_xlim())
+
+    # Broken axis markers between the two panels
+    d = 0.015
+    kwargs = dict(transform=ax_main.transAxes, color='k', clip_on=False, linewidth=1.5)
+    ax_main.plot((-d, +d), (-d, +d), **kwargs)
+    ax_main.plot((-d, +d), (-2.5*d, -1.5*d), **kwargs)
+    kwargs2 = dict(transform=ax_zero.transAxes, color='k', clip_on=False, linewidth=1.5)
+    ax_zero.plot((-d, +d), (1-d, 1+d), **kwargs2)
+    ax_zero.plot((-d, +d), (1-2.5*d, 1-1.5*d), **kwargs2)
+
     fig.savefig(out / "11_cache_pct_over_turns.png")
     plt.close(fig)
     print("  Saved: 11_cache_pct_over_turns.png")
 
-    # V1 chart (strict — tools as uncached, saved separately)
+    # Chart 11b: cache_write % — single axis
+    # Turn 1 and session restarts (~100%) shown as dummy dots at DUMMY_100
+    # All other turns plotted at real values with tight Y axis
+    vals_t2_write = [f(r["cache_write_pct"]) for r in turns
+                     if r.get("cache_parse_ok") in (True, "True") and i(r["turn"]) > 1
+                     and f(r["cache_write_pct"]) < 50]  # exclude restarts from range calc
+    y_max_w  = max(vals_t2_write) + 3 if vals_t2_write else 25
+    DUMMY_100 = y_max_w + 4   # visual position for the "100%" anchor dots
+
     fig, ax = plt.subplots(figsize=(13, 6))
+
     for (sid, rows), color in zip(sorted(by_session.items()), palette):
         rows = sorted(rows, key=lambda r: i(r["turn"]))
-        x = [i(r["turn"]) for r in rows]
-        y = [f(r["v1_cached_pct"]) for r in rows]
         label_str = rows[0]["label"] if rows else sid
-        ax.plot(x, y, marker="o", markersize=3.5, label=f"{sid} {label_str}",
-                color=color, linewidth=1.8)
+        plotted_label = False
+        prev_x, prev_y_real = None, None  # track last real (non-reset) point
+
+        for idx, r in enumerate(rows):
+            t = i(r["turn"])
+            v = f(r["cache_write_pct"])
+            is_reset = v > 50  # turn 1 or session restart
+
+            lbl = f"{sid} {label_str}" if not plotted_label else ""
+
+            if is_reset:
+                # Dummy dot at DUMMY_100
+                ax.plot(t, DUMMY_100, marker="o", markersize=5, color=color,
+                        zorder=3, label=lbl)
+                plotted_label = True
+
+                # Annotate restart (not turn 1)
+                if t > 1:
+                    ax.annotate("restart\n(~100%)", xy=(t, DUMMY_100),
+                                xytext=(t + 0.8, DUMMY_100 - 1),
+                                fontsize=7, color=color,
+                                arrowprops=dict(arrowstyle="->", color=color, lw=0.7))
+
+                # Dashed line from previous real point up to this dummy
+                if prev_x is not None and prev_y_real is not None:
+                    ax.plot([prev_x, t], [prev_y_real, DUMMY_100],
+                            color=color, linestyle="dashed", linewidth=0.8, alpha=0.6)
+
+            else:
+                ax.plot(t, v, marker="o", markersize=3.5, color=color,
+                        zorder=3, label=lbl)
+                plotted_label = True
+
+                # Find previous point — either a reset dummy or last real point
+                prev_dummy_turn = None
+                for rr in reversed(rows[:idx]):
+                    if f(rr["cache_write_pct"]) > 50:
+                        prev_dummy_turn = i(rr["turn"])
+                        break
+
+                if prev_dummy_turn is not None and (prev_x is None or prev_dummy_turn > prev_x):
+                    # Dashed from dummy down to this real point
+                    ax.plot([prev_dummy_turn, t], [DUMMY_100, v],
+                            color=color, linestyle="dashed", linewidth=0.8, alpha=0.6)
+                elif prev_x is not None and prev_y_real is not None:
+                    # Solid line from previous real point
+                    ax.plot([prev_x, t], [prev_y_real, v],
+                            color=color, linewidth=1.8)
+
+                prev_x, prev_y_real = t, v
+
+    # Y axis: real range at bottom, dummy 100% at top
+    ax.set_ylim(-1, DUMMY_100 + 3)
+
+    real_ticks = [t for t in range(0, int(y_max_w) + 1, 5) if t <= y_max_w]
+    ax.set_yticks(real_ticks + [DUMMY_100])
+    ax.set_yticklabels([f"{int(t)}%" for t in real_ticks] + ["~100%\n(reset)"])
+
+    ax.axhline(y=DUMMY_100, color="#aaa", linestyle=":", linewidth=1.0, zorder=0)
+
+    # Broken axis markers
+    gap_y = (DUMMY_100 - y_max_w) / 2 + y_max_w
+    gap_frac = (gap_y - (-1)) / (DUMMY_100 + 3 - (-1))
+    d = 0.015
+    kwargs = dict(transform=ax.transAxes, color='k', clip_on=False, linewidth=1.5)
+    ax.plot((-d, +d), (gap_frac - d, gap_frac + d), **kwargs)
+    ax.plot((-d, +d), (gap_frac - 2.5*d, gap_frac - 1.5*d), **kwargs)
 
     ax.set_xlabel("LLM call (turn number within session)")
-    ax.set_ylabel("Cached % of payload (strict — only ephemeral-marked)")
-    ax.set_title("Cache efficiency drops as sessions grow — strict view\n"
-                 "Only explicitly marked content counted as cached (tools excluded)")
+    ax.set_ylabel("Cache write % of payload (new input this turn)")
+    ax.set_title("Cache write % per turn — turn 1 and session restarts shown at ~100% marker\n"
+                 "Spikes = turns where large tool results are the new input")
     ax.legend(loc="upper right", fontsize=8, ncol=2)
     fig.tight_layout()
-    fig.savefig(out / "11b_cache_pct_over_turns_strict.png")
+    fig.savefig(out / "11b_cache_write_over_turns.png")
     plt.close(fig)
-    print("  Saved: 11b_cache_pct_over_turns_strict.png")
+    print("  Saved: 11b_cache_write_over_turns.png")
 
 
 # ── Chart 12: Absolute cached vs uncached KB per session — V2 (primary) ──────
@@ -403,7 +542,7 @@ def chart_cache_absolute_kb(sessions, out, plt):
     Primary (12): V2 — tools counted as cached.
     Secondary (12b): V1 — tools counted as uncached.
     """
-    if "v2_cached_chars" not in sessions[0]:
+    if "cache_read_chars" not in sessions[0]:
         print("  Skipped: 12_cache_absolute_kb.png (no cache columns — run new analyze.py)")
         return
 
@@ -414,20 +553,23 @@ def chart_cache_absolute_kb(sessions, out, plt):
     w    = 0.55
 
     # V2 chart (primary)
-    cached_kb = [f(r["v2_cached_chars"]) / 1024 for r in sessions]
-    uncach_kb = [f(r["v2_uncached_chars"]) / 1024 for r in sessions]
+    cached_kb = [f(r["cache_read_chars"]) / 1024 for r in sessions]
+    write_kb  = [f(r["cache_write_chars"]) / 1024 for r in sessions]
+    uncach_kb = [f(r["billing_header_chars"]) / 1024 for r in sessions]
 
     fig, ax = plt.subplots(figsize=(13, 6))
-    ax.bar(x, cached_kb, w, label="Cached (system + tools + ephemeral messages)", color="#1D9E75", alpha=0.85)
-    ax.bar(x, uncach_kb, w, bottom=cached_kb,
-           label="Uncached (history + reminders)", color="#D85A30", alpha=0.75)
-    for xi, (c, u) in enumerate(zip(cached_kb, uncach_kb)):
-        ax.text(xi, c + u + 10, f"{c+u:.0f}K", ha="center", va="bottom", fontsize=8, color="#333")
+    ax.bar(x, cached_kb, w, label="Cache read (system + tools + prior history)", color="#1D9E75", alpha=0.85)
+    ax.bar(x, write_kb,  w, bottom=cached_kb,
+           label="Cache write (new user input)", color="#BA7517", alpha=0.85)
+    ax.bar(x, uncach_kb, w, bottom=[a+b for a,b in zip(cached_kb, write_kb)],
+           label="Uncached (billing header)", color="#D85A30", alpha=0.75)
+    for xi, (c, w2, u) in enumerate(zip(cached_kb, write_kb, uncach_kb)):
+        ax.text(xi, c + w2 + u + 10, f"{c+w2+u:.0f}K", ha="center", va="bottom", fontsize=8, color="#333")
     ax.set_xticks(x)
     ax.set_xticklabels(sids)
     ax.set_ylabel("Total chars across all turns (KB)")
-    ax.set_title("Cached vs uncached bytes per session — absolute scale\n"
-                 "(tools counted as cached  |  stacked = total payload sent)")
+    ax.set_title("Cache read / write / uncached bytes per session — absolute scale\n"
+                 "stacked = total payload sent")
     ax.legend()
     fig.tight_layout()
     fig.savefig(out / "12_cache_absolute_kb.png")
@@ -435,25 +577,7 @@ def chart_cache_absolute_kb(sessions, out, plt):
     print("  Saved: 12_cache_absolute_kb.png")
 
     # V1 chart (strict — tools uncached)
-    cached_kb1 = [f(r["v1_cached_chars"]) / 1024 for r in sessions]
-    uncach_kb1 = [f(r["v1_uncached_chars"]) / 1024 for r in sessions]
-
-    fig, ax = plt.subplots(figsize=(13, 6))
-    ax.bar(x, cached_kb1, w, label="Cached (ephemeral-marked only)", color="#1D9E75", alpha=0.85)
-    ax.bar(x, uncach_kb1, w, bottom=cached_kb1,
-           label="Uncached (tools + history + reminders)", color="#D85A30", alpha=0.75)
-    for xi, (c, u) in enumerate(zip(cached_kb1, uncach_kb1)):
-        ax.text(xi, c + u + 10, f"{c+u:.0f}K", ha="center", va="bottom", fontsize=8, color="#333")
-    ax.set_xticks(x)
-    ax.set_xticklabels(sids)
-    ax.set_ylabel("Total chars across all turns (KB)")
-    ax.set_title("Cached vs uncached bytes per session — absolute scale, strict view\n"
-                 "(tools counted as uncached  |  stacked = total payload sent)")
-    ax.legend()
-    fig.tight_layout()
-    fig.savefig(out / "12b_cache_absolute_kb_strict.png")
-    plt.close(fig)
-    print("  Saved: 12b_cache_absolute_kb_strict.png")
+    # 12b removed — single cache definition now
 
 
 # ── main ──────────────────────────────────────────────────────────────────────

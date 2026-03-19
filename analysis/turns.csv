@@ -1,224 +1,224 @@
-session_id,label,turn,timestamp,request_kb,response_kb,growth_from_base_kb,growth_from_base_pct,latency_ms,status,msg_count_in_payload,user_message,cache_system_cached_chars,cache_system_uncached_chars,cache_tools_chars,cache_messages_cached_chars,cache_messages_uncached_chars,cache_total_chars,cache_parse_ok,v1_cached_chars,v1_uncached_chars,v1_cached_pct,v1_uncached_pct,v2_cached_chars,v2_uncached_chars,v2_cached_pct,v2_uncached_pct
-S01,small_talk,1,19:02:22.69,82.3,12.2,0.0,0.0,5427,completed,1,,15174,80,67425,2,1820,84209,True,15176,69325,18.0,82.3,82601,1900,98.1,2.3
-S01,small_talk,2,19:02:34.99,84.2,8.3,1.9,2.3,3482,completed,3,how are you,15174,80,67425,11,2557,86119,True,15185,70062,17.6,81.4,82610,2637,95.9,3.1
-S01,small_talk,3,19:02:38.48,86.7,20.2,4.4,5.4,8579,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,210,2934,88717,True,15384,70439,17.3,79.4,82809,3014,93.3,3.4
-S01,small_talk,4,19:02:44.44,85.6,19.3,3.3,4.0,8216,completed,5,what can you help me with,15174,80,67425,25,3144,87606,True,15199,70649,17.3,80.6,82624,3224,94.3,3.7
-S01,small_talk,5,19:02:52.66,89.4,44.4,7.0,8.6,25813,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,1057,3663,91418,True,16231,71168,17.8,77.8,83656,3743,91.5,4.1
-S01,small_talk,6,19:03:40.06,88.3,5.2,5.9,7.2,2602,completed,7,ok cool thanks,15174,80,67425,14,4720,90296,True,15188,72225,16.8,80.0,82613,4800,91.5,5.3
-S01,small_talk,7,19:03:42.68,90.2,14.7,7.9,9.6,6066,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,94,4906,92329,True,15268,72411,16.5,78.4,82693,4986,89.6,5.4
-S02,factual_qa,1,19:05:45.38,82.4,27.8,0.0,0.0,12510,completed,1,what's the difference between process.nextTick and setImmediate in Node.js,15174,80,67425,74,1820,84281,True,15248,69325,18.1,82.3,82673,1900,98.1,2.3
-S02,factual_qa,2,19:05:57.91,87.7,24.2,5.4,6.5,9669,completed,3,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,1322,2990,89748,True,16496,70495,18.4,78.5,83921,3070,93.5,3.4
-S02,factual_qa,3,19:06:08.27,86.7,25.2,4.3,5.2,11110,completed,3,which one should I use for recursive async operations,15174,80,67425,53,4312,88665,True,15227,71817,17.2,81.0,82652,4392,93.2,5.0
-S02,factual_qa,4,19:06:19.39,91.2,26.0,8.8,10.7,10475,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,1412,5007,93268,True,16586,72512,17.8,77.7,84011,5087,90.1,5.5
-S02,factual_qa,5,19:06:21.80,90.1,46.4,7.7,9.4,20513,completed,5,can you show me a code example of each,15174,80,67425,38,6419,92170,True,15212,73924,16.5,80.2,82637,6499,89.7,7.1
-S02,factual_qa,6,19:06:42.33,97.2,37.6,14.8,18.0,20303,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,4524,6841,99394,True,19698,74346,19.8,74.8,87123,6921,87.7,7.0
-S02,factual_qa,7,19:06:43.80,96.1,69.0,13.7,16.6,30925,completed,7,why does nextTick starve the event loop,15174,80,67425,39,11365,98297,True,15213,78870,15.5,80.2,82638,11445,84.1,11.6
-S02,factual_qa,8,19:07:14.75,104.8,46.8,22.5,27.3,29654,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,5333,11809,106398,True,20507,79314,19.3,74.5,87932,11889,82.6,11.2
-S03,single_file_read,1,19:08:52.01,82.4,7.4,0.0,0.0,4818,completed,1,read scripts/token_counter.py and tell me what it does,15174,80,67425,54,1820,84261,True,15228,69325,18.1,82.3,82653,1900,98.1,2.3
-S03,single_file_read,2,19:08:56.86,90.4,18.4,8.0,9.8,8795,completed,3,read scripts/token_counter.py and tell me what it does,15174,80,67425,6489,2195,92241,True,21663,69700,23.5,75.6,89088,2275,96.6,2.5
-S03,single_file_read,3,19:09:05.67,93.0,19.4,10.6,12.9,8375,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,1349,8684,94861,True,16523,76189,17.4,80.3,83948,8764,88.5,9.2
-S03,single_file_read,4,19:09:17.90,91.9,56.0,9.5,11.6,24968,completed,5,are there any obvious issues with it,15174,80,67425,36,10033,93761,True,15210,77538,16.2,82.7,82635,10113,88.1,10.8
-S03,single_file_read,5,19:09:42.88,100.8,23.0,18.5,22.4,9384,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,1420,12519,102892,True,16594,80024,16.1,77.8,84019,12599,81.7,12.2
-S03,single_file_read,6,19:10:02.81,99.8,34.6,17.4,21.1,14632,completed,7,what would happen if I passed a payload with a datetime object in it,15174,80,67425,68,13939,101824,True,15242,81444,15.0,80.0,82667,14019,81.2,13.8
-S03,single_file_read,7,19:10:17.47,105.5,38.9,23.1,28.1,17568,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,1456,15123,107650,True,16630,82628,15.4,76.8,84055,15203,78.1,14.1
-S04,bug_hunt,1,19:16:15.16,82.4,8.5,0.0,0.0,3772,completed,1,find all the bugs across every file in the scripts folder,15174,80,67425,57,1820,84264,True,15231,69325,18.1,82.3,82656,1900,98.1,2.3
-S04,bug_hunt,2,19:16:18.98,84.2,8.3,1.8,2.2,3244,completed,3,find all the bugs across every file in the scripts folder,15174,80,67425,246,2429,86165,True,15420,69934,17.9,81.2,82845,2509,96.1,2.9
-S04,bug_hunt,3,19:16:22.26,104.3,33.4,21.9,26.6,16464,completed,5,find all the bugs across every file in the scripts folder,15174,80,67425,5509,15497,106009,True,20683,83002,19.5,78.3,88108,15577,83.1,14.7
-S04,bug_hunt,4,19:16:38.74,107.8,22.0,25.4,30.8,9767,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,2247,21006,109553,True,17421,88511,15.9,80.8,84846,21086,77.4,19.2
-S04,bug_hunt,5,19:16:52.41,106.7,60.5,24.3,29.5,17653,completed,7,start with the most critical one and fix it,15174,80,67425,43,23253,108460,True,15217,90758,14.0,83.7,82642,23333,76.2,21.5
-S04,bug_hunt,6,19:17:15.28,112.7,10.6,30.4,36.9,9306,completed,9,start with the most critical one and fix it,15174,80,67425,122,26845,114633,True,15296,94350,13.3,82.3,82721,26925,72.2,23.5
-S04,bug_hunt,7,19:17:24.60,114.8,11.7,32.5,39.4,6306,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,886,26967,116780,True,16060,94472,13.8,80.9,83485,27047,71.5,23.2
-S04,bug_hunt,8,19:17:32.26,114.2,14.1,31.9,38.7,5412,completed,11,commit it,15174,80,67425,9,28370,116199,True,15183,95875,13.1,82.5,82608,28450,71.1,24.5
-S04,bug_hunt,9,19:17:38.69,118.0,14.7,35.7,43.3,5825,completed,13,commit it,15174,80,67425,1535,29342,120070,True,16709,96847,13.9,80.7,84134,29422,70.1,24.5
-S04,bug_hunt,10,19:17:46.52,119.3,3.5,37.0,44.9,2060,completed,15,commit it,15174,80,67425,52,31695,121385,True,15226,99200,12.5,81.7,82651,31775,68.1,26.2
-S04,bug_hunt,11,19:17:48.60,120.8,20.7,38.4,46.6,8929,completed,17,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,206,31747,122842,True,15380,99252,12.5,80.8,82805,31827,67.4,25.9
-S04,bug_hunt,12,19:17:51.63,119.6,20.7,37.3,45.3,7731,completed,17,now fix the rest,15174,80,67425,16,31953,121722,True,15190,99458,12.5,81.7,82615,32033,67.9,26.3
-S04,bug_hunt,13,19:18:01.15,122.5,50.9,40.2,48.8,10123,completed,19,now fix the rest,15174,80,67425,641,33069,124675,True,15815,100574,12.7,80.7,83240,33149,66.8,26.6
-S04,bug_hunt,14,19:18:33.71,125.3,17.7,42.9,52.1,5945,completed,21,now fix the rest,15174,80,67425,122,36162,127493,True,15296,103667,12.0,81.3,82721,36242,64.9,28.4
-S04,bug_hunt,15,19:18:39.69,126.4,11.8,44.0,53.4,4761,completed,23,now fix the rest,15174,80,67425,122,37066,128636,True,15296,104571,11.9,81.3,82721,37146,64.3,28.9
-S04,bug_hunt,16,19:18:48.59,127.3,24.5,44.9,54.6,9054,completed,25,now fix the rest,15174,80,67425,145,37719,129578,True,15319,105224,11.8,81.2,82744,37799,63.9,29.2
-S04,bug_hunt,17,19:18:57.68,128.8,13.3,46.4,56.4,3770,completed,27,now fix the rest,15174,80,67425,126,39052,131121,True,15300,106557,11.7,81.3,82725,39132,63.1,29.8
-S04,bug_hunt,18,19:19:01.48,129.7,13.8,47.4,57.5,6762,completed,29,now fix the rest,15174,80,67425,126,39798,132080,True,15300,107303,11.6,81.2,82725,39878,62.6,30.2
-S04,bug_hunt,19,19:19:08.28,131.2,38.1,48.8,59.3,10971,completed,31,now fix the rest,15174,80,67425,645,40568,133592,True,15819,108073,11.8,80.9,83244,40648,62.3,30.4
-S04,bug_hunt,20,19:19:19.29,133.3,25.5,51.0,61.9,6114,completed,33,now fix the rest,15174,80,67425,126,43054,135772,True,15300,110559,11.3,81.4,82725,43134,60.9,31.8
-S04,bug_hunt,21,19:19:25.44,134.9,15.0,52.5,63.8,6006,completed,35,now fix the rest,15174,80,67425,126,44432,137384,True,15300,111937,11.1,81.5,82725,44512,60.2,32.4
-S04,bug_hunt,22,19:20:03.67,136.0,3.7,53.6,65.1,1912,completed,37,now fix the rest,15174,80,67425,144,45255,138491,True,15318,112760,11.1,81.4,82743,45335,59.7,32.7
-S04,bug_hunt,23,19:20:05.67,136.7,9.1,54.3,66.0,4710,completed,39,now fix the rest,15174,80,67425,322,45520,139202,True,15496,113025,11.1,81.2,82921,45600,59.6,32.8
-S04,bug_hunt,24,19:20:10.43,138.7,36.7,56.4,68.5,18622,completed,41,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,818,45842,141283,True,15992,113347,11.3,80.2,83417,45922,59.0,32.5
-S04,bug_hunt,25,19:20:17.33,137.7,15.7,55.3,67.1,4951,completed,41,run all the scripts and confirm they work,15174,80,67425,41,46660,140188,True,15215,114165,10.9,81.4,82640,46740,58.9,33.3
-S04,bug_hunt,26,19:20:45.46,144.4,4.0,62.0,75.3,2400,completed,43,run all the scripts and confirm they work,15174,80,67425,2405,49690,147041,True,17579,117195,12.0,79.7,85004,49770,57.8,33.8
-S04,bug_hunt,27,19:20:47.93,144.9,5.4,62.5,75.9,2227,completed,45,run all the scripts and confirm they work,15174,80,67425,135,52223,147571,True,15309,119728,10.4,81.1,82734,52303,56.1,35.4
-S04,bug_hunt,28,19:20:50.19,146.7,14.5,64.4,78.1,7273,completed,47,run all the scripts and confirm they work,15174,80,67425,567,53233,149458,True,15741,120738,10.5,80.8,83166,53313,55.6,35.7
-S04,bug_hunt,29,19:20:57.49,148.9,16.1,66.6,80.8,8560,completed,49,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,961,53800,151691,True,16135,121305,10.6,80.0,83560,53880,55.1,35.5
-S05,feature_add,1,19:23:06.23,82.8,13.4,0.0,0.0,5157,completed,1,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,142,1820,84662,True,15625,69325,18.5,81.9,83050,1900,98.1,2.2
-S05,feature_add,2,19:23:12.02,90.1,63.0,7.4,8.9,13800,completed,3,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,317,7757,92158,True,15800,75262,17.1,81.7,83225,7837,90.3,8.5
-S05,feature_add,3,19:23:31.21,93.5,8.8,10.7,13.0,3387,completed,5,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,108,11172,95598,True,15591,78677,16.3,82.3,83016,11252,86.8,11.8
-S05,feature_add,4,19:23:44.03,97.3,15.3,14.5,17.5,7402,completed,7,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,1884,11612,98288,True,17367,79117,17.7,80.5,84792,11692,86.3,11.9
-S05,feature_add,5,19:23:51.46,99.5,22.9,16.8,20.3,11181,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,1028,13496,100578,True,16511,81001,16.4,80.5,83936,13576,83.5,13.5
-S05,feature_add,6,19:24:04.56,98.4,14.6,15.7,18.9,5676,completed,9,commit it,15483,80,67425,9,14524,99451,True,15492,82029,15.6,82.5,82917,14604,83.4,14.7
-S05,feature_add,7,19:24:10.32,101.7,13.8,19.0,22.9,5164,completed,11,commit it,15483,80,67425,910,15623,102835,True,16393,83128,15.9,80.8,83818,15703,81.5,15.3
-S05,feature_add,8,19:24:20.27,103.1,4.0,20.4,24.6,2371,completed,13,commit it,15483,80,67425,286,17216,104264,True,15769,84721,15.1,81.3,83194,17296,79.8,16.6
-S05,feature_add,9,19:24:22.66,104.5,32.5,21.8,26.3,13462,completed,15,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,187,17502,105700,True,15670,85007,14.8,80.4,83095,17582,78.6,16.6
-S05,feature_add,10,19:24:29.64,103.5,10.0,20.7,25.0,4283,completed,15,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,79,17689,104643,True,15562,85194,14.9,81.4,82987,17769,79.3,17.0
-S05,feature_add,11,19:24:33.95,109.0,10.4,26.3,31.8,5495,completed,17,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,3702,18261,110145,True,19185,85766,17.4,77.9,86610,18341,78.6,16.7
-S05,feature_add,12,19:24:39.47,109.9,53.9,27.1,32.8,9275,completed,19,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,118,22437,110981,True,15601,89942,14.1,81.0,83026,22517,74.8,20.3
-S05,feature_add,13,19:24:48.76,112.8,4.2,30.0,36.3,2371,completed,21,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,118,25242,113969,True,15601,92747,13.7,81.4,83026,25322,72.8,22.2
-S05,feature_add,14,19:24:51.24,117.0,6.7,34.2,41.4,4129,completed,23,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,2548,25503,117092,True,18031,93008,15.4,79.4,85456,25583,73.0,21.8
-S05,feature_add,15,19:24:55.38,118.6,23.8,35.9,43.3,11190,completed,25,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,400,28051,118746,True,15883,95556,13.4,80.5,83308,28131,70.2,23.7
-S05,feature_add,16,19:25:11.06,117.6,36.0,34.8,42.1,8691,completed,25,add a summary line at the bottom showing average overhead across all sessions,15483,80,67425,77,28451,117687,True,15560,95956,13.2,81.5,82985,28531,70.5,24.2
-S05,feature_add,17,19:25:19.79,120.5,4.3,37.8,45.6,2283,completed,27,add a summary line at the bottom showing average overhead across all sessions,15483,80,67425,118,30348,120720,True,15601,97853,12.9,81.1,83026,30428,68.8,25.2
-S05,feature_add,18,19:25:22.17,124.3,5.0,41.6,50.3,3286,completed,29,add a summary line at the bottom showing average overhead across all sessions,15483,80,67425,2176,30594,123454,True,17659,98099,14.3,79.5,85084,30674,68.9,24.8
-S05,feature_add,19,19:25:25.47,125.9,25.7,43.1,52.1,11805,completed,31,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,333,32770,125036,True,15816,100275,12.6,80.2,83241,32850,66.6,26.3
-S05,feature_add,20,19:25:28.43,124.8,8.7,42.0,50.8,3693,completed,31,commit everything,15483,80,67425,17,33103,123917,True,15500,100608,12.5,81.2,82925,33183,66.9,26.8
-S05,feature_add,21,19:25:32.21,128.7,11.9,45.9,55.5,5303,completed,33,commit everything,15483,80,67425,320,35782,127897,True,15803,103287,12.4,80.8,83228,35862,65.1,28.0
-S05,feature_add,22,19:25:37.68,130.5,5.3,47.8,57.7,3836,completed,35,commit everything,15483,80,67425,805,36723,129756,True,16288,104228,12.6,80.3,83713,36803,64.5,28.4
-S05,feature_add,23,19:25:41.53,132.1,36.6,49.4,59.7,17810,completed,37,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,417,37528,131426,True,15900,105033,12.1,79.9,83325,37608,63.4,28.6
-S06,large_input_analysis,1,19:26:38.80,82.7,11.1,0.0,0.0,5372,completed,1,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,129,1820,84656,True,15619,69325,18.4,81.9,83044,1900,98.1,2.2
-S06,large_input_analysis,2,19:26:45.20,84.6,7.0,1.8,2.2,2504,completed,3,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,84,2672,86554,True,15574,70177,18.0,81.1,82999,2752,95.9,3.2
-S06,large_input_analysis,3,19:26:52.95,86.9,8.1,4.2,5.1,5659,completed,5,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,1796,3009,88954,True,17286,70514,19.4,79.3,84711,3089,95.2,3.5
-S06,large_input_analysis,4,19:27:02.05,87.6,6.6,4.9,5.9,2778,completed,7,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,102,5150,89682,True,15592,72655,17.4,81.0,83017,5230,92.6,5.8
-S06,large_input_analysis,5,19:27:04.88,88.4,28.4,5.6,6.8,13781,completed,9,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,188,5533,90419,True,15678,73038,17.3,80.8,83103,5613,91.9,6.2
-S06,large_input_analysis,6,19:27:18.68,91.5,31.9,8.7,10.6,13696,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1886,5721,93602,True,17376,73226,18.6,78.2,84801,5801,90.6,6.2
-S06,large_input_analysis,7,19:27:21.71,90.4,24.0,7.7,9.2,8570,completed,11,which component is the biggest cost driver,15490,80,67425,42,7607,92508,True,15532,75112,16.8,81.2,82957,7687,89.7,8.3
-S06,large_input_analysis,8,19:27:34.75,94.7,29.2,12.0,14.5,13611,completed,13,which component is the biggest cost driver,15490,80,67425,1222,8983,96952,True,16712,76488,17.2,78.9,84137,9063,86.8,9.3
-S06,large_input_analysis,9,19:27:48.38,97.9,37.5,15.2,18.3,18665,completed,15,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1850,10205,100096,True,17340,77710,17.3,77.6,84765,10285,84.7,10.3
-S06,large_input_analysis,10,19:27:52.72,96.9,57.6,14.2,17.1,15341,completed,15,"if we removed all tool schemas that were never invoked in this session, how many",15490,80,67425,101,12055,99061,True,15591,79560,15.7,80.3,83016,12135,83.8,12.3
-S06,large_input_analysis,11,19:28:30.28,102.0,24.1,19.2,23.2,12942,completed,17,"if we removed all tool schemas that were never invoked in this session, how many",15490,80,67425,899,15078,104240,True,16389,82583,15.7,79.2,83814,15158,80.4,14.5
-S06,large_input_analysis,12,19:28:43.24,104.9,38.3,22.2,26.8,20439,completed,19,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1543,15977,107072,True,17033,83482,15.9,78.0,84458,16057,78.9,15.0
-S06,large_input_analysis,13,19:28:46.31,103.9,23.0,21.1,25.5,9692,completed,19,write those findings as a paragraph I can put in a Medium article,15490,80,67425,65,17520,106001,True,15555,85025,14.7,80.2,82980,17600,78.3,16.6
-S06,large_input_analysis,14,19:28:56.03,107.8,35.1,25.1,30.3,14751,completed,21,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1097,18129,110036,True,16587,85634,15.1,77.8,84012,18209,76.3,16.5
-S07,refactor,1,19:30:14.95,82.7,12.7,0.0,0.0,5450,completed,1,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,132,1820,84659,True,15622,69325,18.5,81.9,83047,1900,98.1,2.2
-S07,refactor,2,19:30:20.45,85.5,10.6,2.7,3.3,2981,completed,3,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,325,2920,87455,True,15815,70425,18.1,80.5,83240,3000,95.2,3.4
-S07,refactor,3,19:30:23.46,109.7,104.7,26.9,32.5,26305,completed,5,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,5509,19739,111294,True,20999,87244,18.9,78.4,88424,19819,79.5,17.8
-S07,refactor,4,19:31:02.18,115.0,88.6,32.3,39.0,15731,completed,7,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,104,30401,116795,True,15594,97906,13.4,83.8,83019,30481,71.1,26.1
-S07,refactor,5,19:31:17.94,120.3,30.8,37.5,45.3,9048,completed,9,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,641,34986,122161,True,16131,102491,13.2,83.9,83556,35066,68.4,28.7
-S07,refactor,6,19:31:27.03,122.1,10.4,39.4,47.6,3093,completed,11,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,126,37158,124062,True,15616,104663,12.6,84.4,83041,37238,66.9,30.0
-S07,refactor,7,19:31:35.24,124.1,38.5,41.3,49.9,9041,completed,13,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,741,37995,126041,True,16231,105500,12.9,83.7,83656,38075,66.4,30.2
-S07,refactor,8,19:31:44.33,126.4,21.0,43.6,52.7,5388,completed,15,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,114,40771,128439,True,15604,108276,12.1,84.3,83029,40851,64.6,31.8
-S07,refactor,9,19:31:49.73,127.7,19.9,45.0,54.3,5042,completed,17,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,116,41898,129776,True,15606,109403,12.0,84.3,83031,41978,64.0,32.3
-S07,refactor,10,19:31:54.80,129.0,17.0,46.2,55.8,4281,completed,19,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,116,42978,131074,True,15606,110483,11.9,84.3,83031,43058,63.3,32.9
-S07,refactor,11,19:31:59.11,130.5,9.5,47.8,57.7,3137,completed,21,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,635,43836,132674,True,16125,111341,12.2,83.9,83550,43916,63.0,33.1
-S07,refactor,12,19:32:02.29,131.3,36.0,48.5,58.6,7718,completed,23,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,126,44889,133462,True,15616,112394,11.7,84.2,83041,44969,62.2,33.7
-S07,refactor,13,19:32:10.04,133.2,13.7,50.5,61.0,4316,completed,25,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,126,46675,135466,True,15616,114180,11.5,84.3,83041,46755,61.3,34.5
-S07,refactor,14,19:32:14.52,136.5,14.6,53.7,64.9,7678,completed,27,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,406,49008,138783,True,15896,116513,11.5,84.0,83321,49088,60.0,35.4
-S07,refactor,15,19:32:22.23,138.9,18.7,56.2,67.9,8425,completed,29,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1259,49414,141312,True,16749,116919,11.9,82.7,84174,49494,59.6,35.0
-S07,refactor,16,19:32:31.00,137.9,21.1,55.1,66.6,6549,completed,29,make sure nothing breaks after the refactor,15490,80,67425,43,50673,140219,True,15533,118178,11.1,84.3,82958,50753,59.2,36.2
-S07,refactor,17,19:32:37.78,148.6,11.7,65.8,79.5,4702,completed,31,make sure nothing breaks after the refactor,15490,80,67425,2695,55837,149972,True,18185,123342,12.1,82.2,85610,55917,57.1,37.3
-S07,refactor,18,19:32:42.56,151.5,10.5,68.7,83.0,6067,completed,33,make sure nothing breaks after the refactor,15490,80,67425,73,60771,152946,True,15563,128276,10.2,83.9,82988,60851,54.3,39.8
-S07,refactor,19,19:32:48.69,152.4,10.3,69.6,84.1,4530,completed,35,make sure nothing breaks after the refactor,15490,80,67425,94,61401,153864,True,15584,128906,10.1,83.8,83009,61481,53.9,40.0
-S07,refactor,20,19:32:53.34,153.4,11.3,70.7,85.4,6153,completed,37,make sure nothing breaks after the refactor,15490,80,67425,132,62009,154957,True,15622,129514,10.1,83.6,83047,62089,53.6,40.1
-S07,refactor,21,19:33:04.63,155.1,15.0,72.4,87.4,4899,completed,39,make sure nothing breaks after the refactor,15490,80,67425,695,62703,156677,True,16185,130208,10.3,83.1,83610,62783,53.4,40.1
-S07,refactor,22,19:33:12.19,156.3,14.5,73.6,88.9,5934,completed,41,make sure nothing breaks after the refactor,15490,80,67425,199,64189,157917,True,15689,131694,9.9,83.4,83114,64269,52.6,40.7
-S07,refactor,23,19:33:20.39,157.7,6.2,75.0,90.6,3890,completed,43,make sure nothing breaks after the refactor,15490,80,67425,412,65111,159329,True,15902,132616,10.0,83.2,83327,65191,52.3,40.9
-S07,refactor,24,19:33:26.65,158.6,9.7,75.8,91.6,4246,completed,45,make sure nothing breaks after the refactor,15490,80,67425,332,65800,160223,True,15822,133305,9.9,83.2,83247,65880,52.0,41.1
-S07,refactor,25,19:33:30.97,159.3,34.9,76.6,92.5,8521,completed,47,make sure nothing breaks after the refactor,15490,80,67425,64,66568,160988,True,15554,134073,9.7,83.3,82979,66648,51.5,41.4
-S07,refactor,26,19:33:39.57,162.2,50.9,79.5,96.0,13588,completed,49,make sure nothing breaks after the refactor,15490,80,67425,852,68470,163942,True,16342,135975,10.0,82.9,83767,68550,51.1,41.8
-S07,refactor,27,19:34:03.11,167.4,13.2,84.7,102.3,7580,completed,51,make sure nothing breaks after the refactor,15490,80,67425,2312,72042,169093,True,17802,139547,10.5,82.5,85227,72122,50.4,42.7
-S07,refactor,28,19:34:10.72,169.8,23.5,87.0,105.2,11257,completed,53,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1109,74354,171474,True,16599,141859,9.7,82.7,84024,74434,49.0,43.4
-S07,refactor,29,19:34:33.10,168.7,21.5,85.9,103.9,8386,completed,53,run everything again end to end and commit it,15490,80,67425,45,75463,170383,True,15535,142968,9.1,83.9,82960,75543,48.7,44.3
-S07,refactor,30,19:34:41.74,179.5,8.4,96.8,117.0,4469,completed,55,run everything again end to end and commit it,15490,80,67425,2176,80883,180301,True,17666,148388,9.8,82.3,85091,80963,47.2,44.9
-S07,refactor,31,19:34:46.32,189.4,24.2,106.6,128.9,8571,completed,57,run everything again end to end and commit it,15490,80,67425,7805,84303,190391,True,23295,151808,12.2,79.7,90720,84383,47.6,44.3
-S07,refactor,32,19:34:55.12,191.7,6.1,108.9,131.6,3974,completed,59,run everything again end to end and commit it,15490,80,67425,426,93366,192722,True,15916,160871,8.3,83.5,83341,93446,43.2,48.5
-S07,refactor,33,19:34:59.19,194.4,14.2,111.7,135.0,7703,completed,61,run everything again end to end and commit it,15490,80,67425,1141,95000,195563,True,16631,162505,8.5,83.1,84056,95080,43.0,48.6
-S07,refactor,34,19:35:06.92,196.7,26.3,113.9,137.7,11794,completed,63,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,1027,96141,197859,True,16517,163646,8.3,82.7,83942,96221,42.4,48.6
-S08,git_workflow,1,19:36:05.53,82.6,11.2,0.0,0.0,4762,completed,1,what's the current git status of this project,15403,80,67425,45,1820,84485,True,15448,69325,18.3,82.1,82873,1900,98.1,2.2
-S08,git_workflow,2,19:36:11.05,84.9,5.5,2.3,2.8,5341,completed,3,what's the current git status of this project,15403,80,67425,52,2687,86863,True,15455,70192,17.8,80.8,82880,2767,95.4,3.2
-S08,git_workflow,3,19:36:16.40,86.7,17.0,4.1,4.9,7487,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,530,2739,88651,True,15933,70244,18.0,79.2,83358,2819,94.0,3.2
-S08,git_workflow,4,19:36:29.55,85.6,10.5,3.0,3.6,4424,completed,5,stage only the scripts folder changes,15403,80,67425,37,3269,87552,True,15440,70774,17.6,80.8,82865,3349,94.6,3.8
-S08,git_workflow,5,19:36:34.05,87.3,4.6,4.8,5.8,3217,completed,7,stage only the scripts folder changes,15403,80,67425,52,3853,89352,True,15455,71358,17.3,79.9,82880,3933,92.8,4.4
-S08,git_workflow,6,19:36:37.28,88.9,32.7,6.3,7.6,14764,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,316,3905,90919,True,15719,71410,17.3,78.5,83144,3985,91.4,4.4
-S08,git_workflow,7,19:36:41.25,87.8,11.5,5.2,6.3,5112,completed,9,commit with a message that summarizes what the scripts do,15403,80,67425,57,4221,89840,True,15460,71726,17.2,79.8,82885,4301,92.3,4.8
-S08,git_workflow,8,19:36:46.38,90.7,29.2,8.1,9.9,12830,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,467,4645,92807,True,15870,72150,17.1,77.7,83295,4725,89.8,5.1
-S08,git_workflow,9,19:37:19.28,89.7,12.6,7.1,8.6,5378,completed,11,actually I want to amend the commit message to be more specific about the bugs t,15403,80,67425,94,5112,91765,True,15497,72617,16.9,79.1,82922,5192,90.4,5.7
-S08,git_workflow,10,19:37:24.74,92.3,3.2,9.7,11.8,2033,completed,13,actually I want to amend the commit message to be more specific about the bugs t,15403,80,67425,412,5994,94455,True,15815,73499,16.7,77.8,83240,6074,88.1,6.4
-S08,git_workflow,11,19:37:26.83,95.2,9.3,12.6,15.2,5266,completed,15,actually I want to amend the commit message to be more specific about the bugs t,15403,80,67425,2506,6495,97389,True,17909,74000,18.4,76.0,85334,6575,87.6,6.8
-S08,git_workflow,12,19:37:32.12,97.0,10.9,14.4,17.5,6270,completed,17,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,604,9001,99255,True,16007,76506,16.1,77.1,83432,9081,84.1,9.1
-S08,git_workflow,13,19:37:40.07,96.4,10.6,13.8,16.8,4583,completed,17,this is good,15403,80,67425,12,10122,98677,True,15415,77627,15.6,78.7,82840,10202,84.0,10.3
-S08,git_workflow,14,19:37:44.72,97.9,3.6,15.4,18.6,2365,completed,19,this is good,15403,80,67425,241,10631,100244,True,15644,78136,15.6,77.9,83069,10711,82.9,10.7
-S08,git_workflow,15,19:37:47.11,99.4,39.8,16.8,20.4,18223,completed,21,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,217,10872,101714,True,15620,78377,15.4,77.1,83045,10952,81.6,10.8
-S08,git_workflow,16,19:37:49.71,98.3,16.1,15.7,19.0,7203,completed,21,push it to github,15403,80,67425,17,11089,100595,True,15420,78594,15.3,78.1,82845,11169,82.4,11.1
-S08,git_workflow,17,19:37:56.99,100.8,3.5,18.2,22.0,2373,completed,23,push it to github,15403,80,67425,146,11970,103152,True,15549,79475,15.1,77.0,82974,12050,80.4,11.7
-S08,git_workflow,18,19:37:59.42,101.7,5.4,19.1,23.2,3392,completed,25,push it to github,15403,80,67425,598,12218,104098,True,16001,79723,15.4,76.6,83426,12298,80.1,11.8
-S08,git_workflow,19,19:38:02.84,103.3,19.9,20.7,25.1,8664,completed,27,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,374,12816,105725,True,15777,80321,14.9,76.0,83202,12896,78.7,12.2
-S08,git_workflow,20,19:38:14.95,102.2,5.4,19.6,23.8,2632,completed,27,yeah do it,15403,80,67425,10,13190,104599,True,15413,80695,14.7,77.1,82838,13270,79.2,12.7
-S08,git_workflow,21,19:38:35.72,103.3,3.8,20.7,25.1,2429,completed,29,yeah do it,15403,80,67425,298,13386,105742,True,15701,80891,14.8,76.5,83126,13466,78.6,12.7
-S08,git_workflow,22,19:38:39.13,103.8,2.7,21.2,25.7,2380,completed,31,yeah do it,15403,80,67425,136,13794,106229,True,15539,81299,14.6,76.5,82964,13874,78.1,13.1
-S08,git_workflow,23,19:38:41.52,105.2,26.6,22.6,27.4,11464,completed,33,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,193,13930,107673,True,15596,81435,14.5,75.6,83021,14010,77.1,13.0
-S09,mixed_social_code,1,19:39:30.13,82.7,40.2,0.0,0.0,17251,completed,1,hey quick question — do you think LLMs will ever be able to accurately count the,15472,80,67425,111,1820,84620,True,15583,69325,18.4,81.9,83008,1900,98.1,2.2
-S09,mixed_social_code,2,19:39:47.40,89.3,18.1,6.6,8.0,7749,completed,3,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,1463,3527,91385,True,16935,71032,18.5,77.7,84360,3607,92.3,3.9
-S09,mixed_social_code,3,19:39:50.07,88.4,6.2,5.7,6.9,3249,completed,3,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,219,4990,90468,True,15691,72495,17.3,80.1,83116,5070,91.9,5.6
-S09,mixed_social_code,4,19:39:53.35,89.5,1.8,6.8,8.2,2089,completed,5,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,119,5289,91572,True,15591,72794,17.0,79.5,83016,5369,90.7,5.9
-S09,mixed_social_code,5,19:39:55.47,89.8,3.3,7.1,8.6,2031,completed,7,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,84,5443,91915,True,15556,72948,16.9,79.4,82981,5523,90.3,6.0
-S09,mixed_social_code,6,19:39:57.53,92.4,6.7,9.6,11.7,2965,completed,9,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,2049,5628,94434,True,17521,73133,18.6,77.4,84946,5708,90.0,6.0
-S09,mixed_social_code,7,19:40:00.53,95.4,5.8,12.6,15.3,2902,completed,11,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,2285,7944,97381,True,17757,75449,18.2,77.5,85182,8024,87.5,8.2
-S09,mixed_social_code,8,19:40:04.37,101.5,98.1,18.8,22.7,20308,completed,13,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,5417,10474,103684,True,20889,77979,20.1,75.2,88314,10554,85.2,10.2
-S09,mixed_social_code,9,19:40:49.05,107.2,14.4,24.5,29.6,5399,completed,15,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,643,20831,109491,True,16115,88336,14.7,80.7,83540,20911,76.3,19.1
-S09,mixed_social_code,10,19:40:54.47,108.2,9.3,25.5,30.8,3460,completed,17,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,124,22163,110548,True,15596,89668,14.1,81.1,83021,22243,75.1,20.1
-S09,mixed_social_code,11,19:40:57.97,109.0,10.3,26.2,31.7,3246,completed,19,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,124,22708,111311,True,15596,90213,14.0,81.0,83021,22788,74.6,20.5
-S09,mixed_social_code,12,19:41:01.26,109.7,9.8,27.0,32.7,5347,completed,21,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,124,23281,112102,True,15596,90786,13.9,81.0,83021,23361,74.1,20.8
-S09,mixed_social_code,13,19:41:06.62,111.7,23.2,29.0,35.1,10343,completed,23,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,778,23405,114140,True,16250,90910,14.2,79.6,83675,23485,73.3,20.6
-S09,mixed_social_code,14,19:41:14.55,110.7,5.2,28.0,33.8,2904,completed,23,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,68,24183,113072,True,15540,91688,13.7,81.1,82965,24263,73.4,21.5
-S09,mixed_social_code,15,19:41:17.53,111.7,1.8,29.0,35.0,2201,completed,25,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,143,24416,114123,True,15615,91921,13.7,80.5,83040,24496,72.8,21.5
-S09,mixed_social_code,16,19:41:19.76,112.0,3.0,29.3,35.4,1956,completed,27,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,76,24588,114452,True,15548,92093,13.6,80.5,82973,24668,72.5,21.6
-S09,mixed_social_code,17,19:41:21.82,113.3,5.0,30.5,36.9,2888,completed,29,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,937,24746,115736,True,16409,92251,14.2,79.7,83834,24826,72.4,21.5
-S09,mixed_social_code,18,19:41:24.74,115.8,9.5,33.1,40.0,3957,completed,31,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,2012,25881,118258,True,17484,93386,14.8,79.0,84909,25961,71.8,22.0
-S09,mixed_social_code,19,19:41:28.71,116.5,4.4,33.8,40.9,2379,completed,33,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,124,28335,119068,True,15596,95840,13.1,80.5,83021,28415,69.7,23.9
-S09,mixed_social_code,20,19:41:31.17,118.9,4.7,36.2,43.8,2934,completed,35,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,2026,28590,121513,True,17498,96095,14.4,79.1,84923,28670,69.9,23.6
-S09,mixed_social_code,21,19:41:34.16,119.4,9.4,36.7,44.4,5708,completed,37,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,52,30813,122027,True,15524,98318,12.7,80.6,82949,30893,68.0,25.3
-S09,mixed_social_code,22,19:41:39.89,121.4,39.7,38.6,46.7,19463,completed,39,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,694,30865,123983,True,16166,98370,13.0,79.3,83591,30945,67.4,25.0
-S09,mixed_social_code,23,19:41:48.95,120.3,26.2,37.6,45.4,12206,completed,39,"the overhead for S11 seems off, investigate why",15472,80,67425,47,31559,122894,True,15519,99064,12.6,80.6,82944,31639,67.5,25.7
-S09,mixed_social_code,24,19:42:01.19,130.2,4.0,47.4,57.4,2325,completed,41,"the overhead for S11 seems off, investigate why",15472,80,67425,5553,33107,132775,True,21025,100612,15.8,75.8,88450,33187,66.6,25.0
-S09,mixed_social_code,25,19:42:03.56,137.8,4.2,55.1,66.6,3058,completed,43,"the overhead for S11 seems off, investigate why",15472,80,67425,6791,38828,140296,True,22263,106333,15.9,75.8,89688,38908,63.9,27.7
-S09,mixed_social_code,26,19:42:06.68,138.4,24.6,55.7,67.3,6806,completed,45,"the overhead for S11 seems off, investigate why",15472,80,67425,172,45817,140931,True,15644,113322,11.1,80.4,83069,45897,58.9,32.6
-S09,mixed_social_code,27,19:42:13.61,140.3,40.2,57.6,69.6,10181,completed,47,"the overhead for S11 seems off, investigate why",15472,80,67425,494,47140,142868,True,15966,114645,11.2,80.2,83391,47220,58.4,33.1
-S09,mixed_social_code,28,19:42:23.87,142.9,5.6,60.2,72.7,3351,completed,49,"the overhead for S11 seems off, investigate why",15472,80,67425,338,49645,145493,True,15810,117150,10.9,80.5,83235,49725,57.2,34.2
-S09,mixed_social_code,29,19:42:42.87,145.5,46.1,62.8,75.9,17752,completed,51,[Request interrupted by user for tool use],15472,80,67425,8,52338,148195,True,15480,119843,10.4,80.9,82905,52418,55.9,35.4
-S09,mixed_social_code,30,19:43:00.70,153.0,16.8,70.3,85.0,9239,completed,53,[Request interrupted by user for tool use],15472,80,67425,1572,55141,155894,True,17044,122646,10.9,78.7,84469,55221,54.2,35.4
-S09,mixed_social_code,31,19:43:09.97,159.9,16.5,77.2,93.4,5080,completed,55,[Request interrupted by user for tool use],15472,80,67425,5194,57740,162752,True,20666,125245,12.7,77.0,88091,57820,54.1,35.5
-S09,mixed_social_code,32,19:43:15.08,161.1,26.0,78.4,94.7,5221,completed,57,[Request interrupted by user for tool use],15472,80,67425,124,63725,163911,True,15596,131230,9.5,80.1,83021,63805,50.7,38.9
-S09,mixed_social_code,33,19:43:20.33,162.6,24.8,79.8,96.5,4926,completed,59,[Request interrupted by user for tool use],15472,80,67425,124,65040,165444,True,15596,132545,9.4,80.1,83021,65120,50.2,39.4
-S09,mixed_social_code,34,19:43:25.29,164.1,52.4,81.3,98.3,8358,completed,61,[Request interrupted by user for tool use],15472,80,67425,124,66362,166984,True,15596,133867,9.3,80.2,83021,66442,49.7,39.8
-S09,mixed_social_code,35,19:43:33.68,166.9,9.1,84.2,101.7,5208,completed,63,[Request interrupted by user for tool use],15472,80,67425,124,69043,169863,True,15596,136548,9.2,80.4,83021,69123,48.9,40.7
-S09,mixed_social_code,36,19:43:38.97,167.5,10.5,84.8,102.5,3328,completed,65,[Request interrupted by user for tool use],15472,80,67425,17,69538,170516,True,15489,137043,9.1,80.4,82914,69618,48.6,40.8
-S09,mixed_social_code,37,19:43:42.34,168.8,4.3,86.1,104.1,3611,completed,67,[Request interrupted by user for tool use],15472,80,67425,643,70004,171831,True,16115,137509,9.4,80.0,83540,70084,48.6,40.8
-S09,mixed_social_code,38,19:43:46.05,171.2,12.4,88.5,107.0,7146,completed,69,[Request interrupted by user for tool use],15472,80,67425,2026,70804,174302,True,17498,138309,10.0,79.4,84923,70884,48.7,40.7
-S09,mixed_social_code,39,19:43:53.22,173.2,1.9,90.5,109.4,2760,completed,71,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,754,72830,176321,True,16226,140335,9.2,79.6,83651,72910,47.4,41.4
-S10,open_source_prep,1,19:44:21.44,82.8,16.8,0.0,0.0,6482,completed,1,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,147,1820,84736,True,15696,69325,18.5,81.8,83121,1900,98.1,2.2
-S10,open_source_prep,2,19:44:29.03,94.5,11.5,11.6,14.1,4382,completed,3,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,179,12072,96931,True,15728,79577,16.2,82.1,83153,12152,85.8,12.5
-S10,open_source_prep,3,19:44:36.18,101.3,6.6,18.5,22.3,3130,completed,5,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,1262,17157,103776,True,16811,84662,16.2,81.6,84236,17237,81.2,16.6
-S10,open_source_prep,4,19:44:41.97,107.9,20.4,25.1,30.3,6146,completed,7,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,3518,20860,110454,True,19067,88365,17.3,80.0,86492,20940,78.3,19.0
-S10,open_source_prep,5,19:44:48.17,109.6,3.5,26.8,32.4,2648,completed,9,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,31,25330,112236,True,15580,92835,13.9,82.7,83005,25410,74.0,22.6
-S10,open_source_prep,6,19:44:50.85,111.7,64.4,28.9,34.8,31093,completed,11,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,1608,25475,114284,True,17157,92980,15.0,81.4,84582,25555,74.0,22.4
-S10,open_source_prep,7,19:45:21.96,117.9,26.4,35.1,42.4,11566,completed,13,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15549,80,67425,4917,27083,120592,True,20466,94588,17.0,78.4,87891,27163,72.9,22.5
-S10,open_source_prep,8,19:45:35.61,116.8,64.6,34.0,41.0,17624,completed,13,add whatever is missing,15549,80,67425,23,32000,119479,True,15572,99505,13.0,83.3,82997,32080,69.5,26.8
-S10,open_source_prep,9,19:45:53.86,123.7,27.3,40.9,49.4,5039,completed,15,add whatever is missing,15549,80,67425,53,35656,126547,True,15602,103161,12.3,81.5,83027,35736,65.6,28.2
-S10,open_source_prep,10,19:46:01.34,125.5,39.5,42.7,51.5,10968,completed,17,add whatever is missing,15549,80,67425,95,37036,128385,True,15644,104541,12.2,81.4,83069,37116,64.7,28.9
-S10,open_source_prep,11,19:46:12.35,128.0,73.6,45.2,54.6,16428,completed,19,add whatever is missing,15549,80,67425,98,39048,130957,True,15647,106553,11.9,81.4,83072,39128,63.4,29.9
-S10,open_source_prep,12,19:46:28.84,132.6,132.8,49.8,60.1,30859,completed,21,add whatever is missing,15549,80,67425,102,42864,135658,True,15651,110369,11.5,81.4,83076,42944,61.2,31.7
-S10,open_source_prep,13,19:46:59.75,139.7,5.5,56.9,68.7,7970,completed,23,add whatever is missing,15549,80,67425,103,49661,143002,True,15652,117166,10.9,81.9,83077,49741,58.1,34.8
-S10,open_source_prep,14,19:47:07.73,139.7,0.2,56.9,68.7,7173,completed,23,add whatever is missing,15549,80,67425,103,49661,142988,True,15652,117166,10.9,81.9,83077,49741,58.1,34.8
-S10,open_source_prep,15,19:47:55.75,139.8,8.0,57.0,68.8,7046,completed,23,continue,15549,80,67425,8,49764,143036,True,15557,117269,10.9,82.0,82982,49844,58.0,34.8
-S10,open_source_prep,16,19:48:02.81,139.8,0.2,56.9,68.8,11232,completed,23,continue,15549,80,67425,8,49764,143022,True,15557,117269,10.9,82.0,82982,49844,58.0,34.9
-S10,open_source_prep,17,19:48:27.57,139.8,8.2,57.0,68.8,7571,completed,23,continue,15549,80,67425,20,49772,143082,True,15569,117277,10.9,82.0,82994,49852,58.0,34.8
-S10,open_source_prep,18,19:48:35.15,139.8,0.2,57.0,68.8,7384,completed,23,continue,15549,80,67425,20,49772,143068,True,15569,117277,10.9,82.0,82994,49852,58.0,34.8
-S10,open_source_prep,19,19:49:19.48,139.9,15.6,57.1,68.9,10982,completed,23,continue,15549,80,67425,45,49792,143153,True,15594,117297,10.9,81.9,83019,49872,58.0,34.8
-S10,open_source_prep,20,19:49:30.48,139.9,0.2,57.1,68.9,11083,completed,23,continue,15549,80,67425,45,49792,143139,True,15594,117297,10.9,81.9,83019,49872,58.0,34.8
-S10,open_source_prep,21,19:50:18.96,82.9,21.5,0.1,0.1,7507,completed,1,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,147,1820,84848,True,15802,69325,18.6,81.7,83227,1900,98.1,2.2
-S10,open_source_prep,22,19:50:26.49,109.8,12.7,26.9,32.5,5015,completed,3,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,9432,16981,111896,True,25087,84486,22.4,75.5,92512,17061,82.7,15.2
-S10,open_source_prep,23,19:50:32.49,120.7,21.5,37.9,45.8,6956,completed,5,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,1397,34482,122664,True,17052,101987,13.9,83.1,84477,34562,68.9,28.2
-S10,open_source_prep,24,19:50:39.52,122.8,6.7,39.9,48.2,3210,completed,7,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,7,37001,124769,True,15662,104506,12.6,83.8,83087,37081,66.6,29.7
-S10,open_source_prep,25,19:50:45.76,129.4,44.4,46.6,56.3,21533,completed,9,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,138,42792,131390,True,15793,110297,12.0,83.9,83218,42872,63.3,32.6
-S10,open_source_prep,26,19:51:07.32,134.3,30.2,51.5,62.2,12515,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15655,80,67425,3599,42930,136345,True,19254,110435,14.1,81.0,86679,43010,63.6,31.5
-S10,open_source_prep,27,19:51:42.11,133.2,15.5,50.4,60.9,10305,completed,11,add basic required features out of this list,15655,80,67425,44,46529,135253,True,15699,114034,11.6,84.3,83124,46609,61.5,34.5
-S10,open_source_prep,28,19:51:52.43,133.2,0.2,50.4,60.8,14378,completed,11,add basic required features out of this list,15655,80,67425,44,46529,135239,True,15699,114034,11.6,84.3,83124,46609,61.5,34.5
-S10,open_source_prep,29,19:52:16.38,133.8,45.1,51.0,61.6,13914,completed,11,add basic required features out of this list,15655,80,67425,27,47090,135852,True,15682,114595,11.5,84.4,83107,47170,61.2,34.7
-S10,open_source_prep,30,19:52:30.69,139.1,15.2,56.2,67.9,4847,completed,13,add basic required features out of this list,15655,80,67425,74,49735,141228,True,15729,117240,11.1,83.0,83154,49815,58.9,35.3
-S10,open_source_prep,31,19:52:38.04,140.2,5.6,57.4,69.3,11426,completed,15,add basic required features out of this list,15655,80,67425,112,50504,142446,True,15767,118009,11.1,82.8,83192,50584,58.4,35.5
-S10,open_source_prep,32,19:52:49.48,140.2,0.2,57.4,69.3,6567,completed,15,add basic required features out of this list,15655,80,67425,112,50504,142432,True,15767,118009,11.1,82.9,83192,50584,58.4,35.5
-S10,open_source_prep,33,19:53:10.92,140.3,7.4,57.5,69.4,3869,completed,15,whats 8+8,15655,80,67425,9,50616,142481,True,15664,118121,11.0,82.9,83089,50696,58.3,35.6
-S10,open_source_prep,34,19:53:14.81,142.6,29.6,59.8,72.2,12907,completed,17,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15655,80,67425,2,50999,144887,True,15657,118504,10.8,81.8,83082,51079,57.3,35.3
-S10,open_source_prep,35,19:53:28.30,141.5,16.9,58.7,70.9,6331,completed,17,push everything to github,15655,80,67425,25,51001,143776,True,15680,118506,10.9,82.4,83105,51081,57.8,35.5
-S10,open_source_prep,36,19:53:34.82,152.9,25.4,70.1,84.6,7533,completed,19,push everything to github,15655,80,67425,333,60398,155439,True,15988,127903,10.3,82.3,83413,60478,53.7,38.9
-S10,open_source_prep,37,19:53:42.57,155.8,4.7,72.9,88.1,3791,completed,21,push everything to github,15655,80,67425,1249,61740,158341,True,16904,129245,10.7,81.6,84329,61820,53.3,39.0
-S10,open_source_prep,38,19:53:47.43,156.4,10.5,73.5,88.8,5976,completed,23,push everything to github,15655,80,67425,22,63194,158975,True,15677,130699,9.9,82.2,83102,63274,52.3,39.8
-S10,open_source_prep,39,19:53:53.42,158.5,33.1,75.6,91.3,21989,completed,25,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15655,80,67425,857,63216,161099,True,16512,130721,10.2,81.1,83937,63296,52.1,39.3
+session_id,label,turn,timestamp,request_kb,response_kb,growth_from_base_kb,growth_from_base_pct,latency_ms,status,msg_count_in_payload,user_message,system_prompt_chars,billing_header_chars,tools_chars,prior_history_chars,new_input_chars,cache_read_chars,cache_write_chars,cache_total_chars,cache_parse_ok,cache_read_pct,cache_write_pct,billing_header_pct
+S01,small_talk,1,19:02:22.69,82.3,12.2,0.0,0.0,5427,completed,1,,15174,80,67425,0,1822,0,84421,84209,True,0.0,100.3,0.1
+S01,small_talk,2,19:02:34.99,84.2,8.3,1.9,2.3,3482,completed,3,how are you,15174,80,67425,2557,11,85156,11,86119,True,98.9,0.0,0.1
+S01,small_talk,3,19:02:38.48,86.7,20.2,4.4,5.4,8579,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,3155,1100,85754,1100,88717,True,96.7,1.2,0.1
+S01,small_talk,4,19:02:44.44,85.6,19.3,3.3,4.0,8216,completed,5,what can you help me with,15174,80,67425,3155,25,85754,25,87606,True,97.9,0.0,0.1
+S01,small_talk,5,19:02:52.66,89.4,44.4,7.0,8.6,25813,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,4756,1100,87355,1100,91418,True,95.6,1.2,0.1
+S01,small_talk,6,19:03:40.06,88.3,5.2,5.9,7.2,2602,completed,7,ok cool thanks,15174,80,67425,4756,14,87355,14,90296,True,96.7,0.0,0.1
+S01,small_talk,7,19:03:42.68,90.2,14.7,7.9,9.6,6066,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,5050,1100,87649,1100,92329,True,94.9,1.2,0.1
+S02,factual_qa,1,19:05:45.38,82.4,27.8,0.0,0.0,12510,completed,1,what's the difference between process.nextTick and setImmediate in Node.js,15174,80,67425,0,1894,0,84493,84281,True,0.0,100.3,0.1
+S02,factual_qa,2,19:05:57.91,87.7,24.2,5.4,6.5,9669,completed,3,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,4312,1100,86911,1100,89748,True,96.8,1.2,0.1
+S02,factual_qa,3,19:06:08.27,86.7,25.2,4.3,5.2,11110,completed,3,which one should I use for recursive async operations,15174,80,67425,4312,53,86911,53,88665,True,98.0,0.1,0.1
+S02,factual_qa,4,19:06:19.39,91.2,26.0,8.8,10.7,10475,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,6472,1100,89071,1100,93268,True,95.5,1.2,0.1
+S02,factual_qa,5,19:06:21.80,90.1,46.4,7.7,9.4,20513,completed,5,can you show me a code example of each,15174,80,67425,6472,38,89071,38,92170,True,96.6,0.0,0.1
+S02,factual_qa,6,19:06:42.33,97.2,37.6,14.8,18.0,20303,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,11456,1100,94055,1100,99394,True,94.6,1.1,0.1
+S02,factual_qa,7,19:06:43.80,96.1,69.0,13.7,16.6,30925,completed,7,why does nextTick starve the event loop,15174,80,67425,11456,39,94055,39,98297,True,95.7,0.0,0.1
+S02,factual_qa,8,19:07:14.75,104.8,46.8,22.5,27.3,29654,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,17272,1100,99871,1100,106398,True,93.9,1.0,0.1
+S03,single_file_read,1,19:08:52.01,82.4,7.4,0.0,0.0,4818,completed,1,read scripts/token_counter.py and tell me what it does,15174,80,67425,0,1874,0,84473,84261,True,0.0,100.3,0.1
+S03,single_file_read,2,19:08:56.86,90.4,18.4,8.0,9.8,8795,completed,3,read scripts/token_counter.py and tell me what it does,15174,80,67425,2195,6489,84794,6489,92241,True,91.9,7.0,0.1
+S03,single_file_read,3,19:09:05.67,93.0,19.4,10.6,12.9,8375,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,10033,1100,92632,1100,94861,True,97.7,1.2,0.1
+S03,single_file_read,4,19:09:17.90,91.9,56.0,9.5,11.6,24968,completed,5,are there any obvious issues with it,15174,80,67425,10033,36,92632,36,93761,True,98.8,0.0,0.1
+S03,single_file_read,5,19:09:42.88,100.8,23.0,18.5,22.4,9384,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,13975,1100,96574,1100,102892,True,93.9,1.1,0.1
+S03,single_file_read,6,19:10:02.81,99.8,34.6,17.4,21.1,14632,completed,7,what would happen if I passed a payload with a datetime object in it,15174,80,67425,13975,68,96574,68,101824,True,94.8,0.1,0.1
+S03,single_file_read,7,19:10:17.47,105.5,38.9,23.1,28.1,17568,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,16683,1100,99282,1100,107650,True,92.2,1.0,0.1
+S04,bug_hunt,1,19:16:15.16,82.4,8.5,0.0,0.0,3772,completed,1,find all the bugs across every file in the scripts folder,15174,80,67425,0,1877,0,84476,84264,True,0.0,100.3,0.1
+S04,bug_hunt,2,19:16:18.98,84.2,8.3,1.8,2.2,3244,completed,3,find all the bugs across every file in the scripts folder,15174,80,67425,2429,246,85028,246,86165,True,98.7,0.3,0.1
+S04,bug_hunt,3,19:16:22.26,104.3,33.4,21.9,26.6,16464,completed,5,find all the bugs across every file in the scripts folder,15174,80,67425,3027,17979,85626,17979,106009,True,80.8,17.0,0.1
+S04,bug_hunt,4,19:16:38.74,107.8,22.0,25.4,30.8,9767,completed,7,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,23253,1100,105852,1100,109553,True,96.6,1.0,0.1
+S04,bug_hunt,5,19:16:52.41,106.7,60.5,24.3,29.5,17653,completed,7,start with the most critical one and fix it,15174,80,67425,23253,43,105852,43,108460,True,97.6,0.0,0.1
+S04,bug_hunt,6,19:17:15.28,112.7,10.6,30.4,36.9,9306,completed,9,start with the most critical one and fix it,15174,80,67425,26888,122,109487,122,114633,True,95.5,0.1,0.1
+S04,bug_hunt,7,19:17:24.60,114.8,11.7,32.5,39.4,6306,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,27896,1100,110495,1100,116780,True,94.6,0.9,0.1
+S04,bug_hunt,8,19:17:32.26,114.2,14.1,31.9,38.7,5412,completed,11,commit it,15174,80,67425,27896,526,110495,526,116199,True,95.1,0.5,0.1
+S04,bug_hunt,9,19:17:38.69,118.0,14.7,35.7,43.3,5825,completed,13,commit it,15174,80,67425,29045,1875,111644,1875,120070,True,93.0,1.6,0.1
+S04,bug_hunt,10,19:17:46.52,119.3,3.5,37.0,44.9,2060,completed,15,commit it,15174,80,67425,31594,196,114193,196,121385,True,94.1,0.2,0.1
+S04,bug_hunt,11,19:17:48.60,120.8,20.7,38.4,46.6,8929,completed,17,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,31996,1100,114595,1100,122842,True,93.3,0.9,0.1
+S04,bug_hunt,12,19:17:51.63,119.6,20.7,37.3,45.3,7731,completed,17,now fix the rest,15174,80,67425,31996,16,114595,16,121722,True,94.1,0.0,0.1
+S04,bug_hunt,13,19:18:01.15,122.5,50.9,40.2,48.8,10123,completed,19,now fix the rest,15174,80,67425,33128,641,115727,641,124675,True,92.8,0.5,0.1
+S04,bug_hunt,14,19:18:33.71,125.3,17.7,42.9,52.1,5945,completed,21,now fix the rest,15174,80,67425,36221,122,118820,122,127493,True,93.2,0.1,0.1
+S04,bug_hunt,15,19:18:39.69,126.4,11.8,44.0,53.4,4761,completed,23,now fix the rest,15174,80,67425,37125,122,119724,122,128636,True,93.1,0.1,0.1
+S04,bug_hunt,16,19:18:48.59,127.3,24.5,44.9,54.6,9054,completed,25,now fix the rest,15174,80,67425,37778,145,120377,145,129578,True,92.9,0.1,0.1
+S04,bug_hunt,17,19:18:57.68,128.8,13.3,46.4,56.4,3770,completed,27,now fix the rest,15174,80,67425,39111,126,121710,126,131121,True,92.8,0.1,0.1
+S04,bug_hunt,18,19:19:01.48,129.7,13.8,47.4,57.5,6762,completed,29,now fix the rest,15174,80,67425,39857,126,122456,126,132080,True,92.7,0.1,0.1
+S04,bug_hunt,19,19:19:08.28,131.2,38.1,48.8,59.3,10971,completed,31,now fix the rest,15174,80,67425,40627,645,123226,645,133592,True,92.2,0.5,0.1
+S04,bug_hunt,20,19:19:19.29,133.3,25.5,51.0,61.9,6114,completed,33,now fix the rest,15174,80,67425,43113,126,125712,126,135772,True,92.6,0.1,0.1
+S04,bug_hunt,21,19:19:25.44,134.9,15.0,52.5,63.8,6006,completed,35,now fix the rest,15174,80,67425,44491,126,127090,126,137384,True,92.5,0.1,0.1
+S04,bug_hunt,22,19:20:03.67,136.0,3.7,53.6,65.1,1912,completed,37,now fix the rest,15174,80,67425,45314,144,127913,144,138491,True,92.4,0.1,0.1
+S04,bug_hunt,23,19:20:05.67,136.7,9.1,54.3,66.0,4710,completed,39,now fix the rest,15174,80,67425,45579,322,128178,322,139202,True,92.1,0.2,0.1
+S04,bug_hunt,24,19:20:10.43,138.7,36.7,56.4,68.5,18622,completed,41,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,46719,1100,129318,1100,141283,True,91.5,0.8,0.1
+S04,bug_hunt,25,19:20:17.33,137.7,15.7,55.3,67.1,4951,completed,41,run all the scripts and confirm they work,15174,80,67425,46719,41,129318,41,140188,True,92.2,0.0,0.1
+S04,bug_hunt,26,19:20:45.46,144.4,4.0,62.0,75.3,2400,completed,43,run all the scripts and confirm they work,15174,80,67425,47380,4815,129979,4815,147041,True,88.4,3.3,0.1
+S04,bug_hunt,27,19:20:47.93,144.9,5.4,62.5,75.9,2227,completed,45,run all the scripts and confirm they work,15174,80,67425,52323,135,134922,135,147571,True,91.4,0.1,0.1
+S04,bug_hunt,28,19:20:50.19,146.7,14.5,64.4,78.1,7273,completed,47,run all the scripts and confirm they work,15174,80,67425,52625,1275,135224,1275,149458,True,90.5,0.9,0.1
+S04,bug_hunt,29,19:20:57.49,148.9,16.1,66.6,80.8,8560,completed,49,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15174,80,67425,54861,1100,137460,1100,151691,True,90.6,0.7,0.1
+S05,feature_add,1,19:23:06.23,82.8,13.4,0.0,0.0,5157,completed,1,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,0,1962,0,84870,84662,True,0.0,100.2,0.1
+S05,feature_add,2,19:23:12.02,90.1,63.0,7.4,8.9,13800,completed,3,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,2770,5304,85678,5304,92158,True,93.0,5.8,0.1
+S05,feature_add,3,19:23:31.21,93.5,8.8,10.7,13.0,3387,completed,5,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,11172,108,94080,108,95598,True,98.4,0.1,0.1
+S05,feature_add,4,19:23:44.03,97.3,15.3,14.5,17.5,7402,completed,7,add a new script called scripts/visualize.py that reads analysis/turns.csv and p,15483,80,67425,11581,1915,94489,1915,98288,True,96.1,1.9,0.1
+S05,feature_add,5,19:23:51.46,99.5,22.9,16.8,20.3,11181,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,14524,1100,97432,1100,100578,True,96.9,1.1,0.1
+S05,feature_add,6,19:24:04.56,98.4,14.6,15.7,18.9,5676,completed,9,commit it,15483,80,67425,14524,9,97432,9,99451,True,98.0,0.0,0.1
+S05,feature_add,7,19:24:10.32,101.7,13.8,19.0,22.9,5164,completed,11,commit it,15483,80,67425,15266,1276,98174,1276,102835,True,95.5,1.2,0.1
+S05,feature_add,8,19:24:20.27,103.1,4.0,20.4,24.6,2371,completed,13,commit it,15483,80,67425,17075,436,99983,436,104264,True,95.9,0.4,0.1
+S05,feature_add,9,19:24:22.66,104.5,32.5,21.8,26.3,13462,completed,15,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,17698,1100,100606,1100,105700,True,95.2,1.0,0.1
+S05,feature_add,10,19:24:29.64,103.5,10.0,20.7,25.0,4283,completed,15,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,17698,79,100606,79,104643,True,96.1,0.1,0.1
+S05,feature_add,11,19:24:33.95,109.0,10.4,26.3,31.8,5495,completed,17,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,18349,3702,101257,3702,110145,True,91.9,3.4,0.1
+S05,feature_add,12,19:24:39.47,109.9,53.9,27.1,32.8,9275,completed,19,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,22525,118,105433,118,110981,True,95.0,0.1,0.1
+S05,feature_add,13,19:24:48.76,112.8,4.2,30.0,36.3,2371,completed,21,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,25330,118,108238,118,113969,True,95.0,0.1,0.1
+S05,feature_add,14,19:24:51.24,117.0,6.7,34.2,41.4,4129,completed,23,"make the bars colored — green if overhead < 90%, yellow if < 99%, red otherwise",15483,80,67425,25591,2548,108499,2548,117092,True,92.7,2.2,0.1
+S05,feature_add,15,19:24:55.38,118.6,23.8,35.9,43.3,11190,completed,25,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,28539,1100,111447,1100,118746,True,93.9,0.9,0.1
+S05,feature_add,16,19:25:11.06,117.6,36.0,34.8,42.1,8691,completed,25,add a summary line at the bottom showing average overhead across all sessions,15483,80,67425,28539,77,111447,77,117687,True,94.7,0.1,0.1
+S05,feature_add,17,19:25:19.79,120.5,4.3,37.8,45.6,2283,completed,27,add a summary line at the bottom showing average overhead across all sessions,15483,80,67425,30513,118,113421,118,120720,True,94.0,0.1,0.1
+S05,feature_add,18,19:25:22.17,124.3,5.0,41.6,50.3,3286,completed,29,add a summary line at the bottom showing average overhead across all sessions,15483,80,67425,30759,2176,113667,2176,123454,True,92.1,1.8,0.1
+S05,feature_add,19,19:25:25.47,125.9,25.7,43.1,52.1,11805,completed,31,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,33268,1100,116176,1100,125036,True,92.9,0.9,0.1
+S05,feature_add,20,19:25:28.43,124.8,8.7,42.0,50.8,3693,completed,31,commit everything,15483,80,67425,33268,17,116176,17,123917,True,93.8,0.0,0.1
+S05,feature_add,21,19:25:32.21,128.7,11.9,45.9,55.5,5303,completed,33,commit everything,15483,80,67425,33605,2679,116513,2679,127897,True,91.1,2.1,0.1
+S05,feature_add,22,19:25:37.68,130.5,5.3,47.8,57.7,3836,completed,35,commit everything,15483,80,67425,36788,922,119696,922,129756,True,92.2,0.7,0.1
+S05,feature_add,23,19:25:41.53,132.1,36.6,49.4,59.7,17810,completed,37,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15483,80,67425,38127,1100,121035,1100,131426,True,92.1,0.8,0.1
+S06,large_input_analysis,1,19:26:38.80,82.7,11.1,0.0,0.0,5372,completed,1,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,0,1949,0,84864,84656,True,0.0,100.2,0.1
+S06,large_input_analysis,2,19:26:45.20,84.6,7.0,1.8,2.2,2504,completed,3,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,2672,84,85587,84,86554,True,98.9,0.1,0.1
+S06,large_input_analysis,3,19:26:52.95,86.9,8.1,4.2,5.1,5659,completed,5,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,3009,1796,85924,1796,88954,True,96.6,2.0,0.1
+S06,large_input_analysis,4,19:27:02.05,87.6,6.6,4.9,5.9,2778,completed,7,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,5150,102,88065,102,89682,True,98.2,0.1,0.1
+S06,large_input_analysis,5,19:27:04.88,88.4,28.4,5.6,6.8,13781,completed,9,"here's a raw API payload, analyze its token composition: [paste the full S10 tur",15490,80,67425,5533,188,88448,188,90419,True,97.8,0.2,0.1
+S06,large_input_analysis,6,19:27:18.68,91.5,31.9,8.7,10.6,13696,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,7607,1100,90522,1100,93602,True,96.7,1.2,0.1
+S06,large_input_analysis,7,19:27:21.71,90.4,24.0,7.7,9.2,8570,completed,11,which component is the biggest cost driver,15490,80,67425,7607,42,90522,42,92508,True,97.9,0.0,0.1
+S06,large_input_analysis,8,19:27:34.75,94.7,29.2,12.0,14.5,13611,completed,13,which component is the biggest cost driver,15490,80,67425,9025,1222,91940,1222,96952,True,94.8,1.3,0.1
+S06,large_input_analysis,9,19:27:48.38,97.9,37.5,15.2,18.3,18665,completed,15,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,12097,1100,95012,1100,100096,True,94.9,1.1,0.1
+S06,large_input_analysis,10,19:27:52.72,96.9,57.6,14.2,17.1,15341,completed,15,"if we removed all tool schemas that were never invoked in this session, how many",15490,80,67425,12097,101,95012,101,99061,True,95.9,0.1,0.1
+S06,large_input_analysis,11,19:28:30.28,102.0,24.1,19.2,23.2,12942,completed,17,"if we removed all tool schemas that were never invoked in this session, how many",15490,80,67425,15221,899,98136,899,104240,True,94.1,0.9,0.1
+S06,large_input_analysis,12,19:28:43.24,104.9,38.3,22.2,26.8,20439,completed,19,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,17663,1100,100578,1100,107072,True,93.9,1.0,0.1
+S06,large_input_analysis,13,19:28:46.31,103.9,23.0,21.1,25.5,9692,completed,19,write those findings as a paragraph I can put in a Medium article,15490,80,67425,17663,65,100578,65,106001,True,94.9,0.1,0.1
+S06,large_input_analysis,14,19:28:56.03,107.8,35.1,25.1,30.3,14751,completed,21,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,19434,1100,102349,1100,110036,True,93.0,1.0,0.1
+S07,refactor,1,19:30:14.95,82.7,12.7,0.0,0.0,5450,completed,1,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,0,1952,0,84867,84659,True,0.0,100.2,0.1
+S07,refactor,2,19:30:20.45,85.5,10.6,2.7,3.3,2981,completed,3,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,2806,439,85721,439,87455,True,98.0,0.5,0.1
+S07,refactor,3,19:30:23.46,109.7,104.7,26.9,32.5,26305,completed,5,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,3635,21613,86550,21613,111294,True,77.8,19.4,0.1
+S07,refactor,4,19:31:02.18,115.0,88.6,32.3,39.0,15731,completed,7,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,30401,104,113316,104,116795,True,97.0,0.1,0.1
+S07,refactor,5,19:31:17.94,120.3,30.8,37.5,45.3,9048,completed,9,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,34986,641,117901,641,122161,True,96.5,0.5,0.1
+S07,refactor,6,19:31:27.03,122.1,10.4,39.4,47.6,3093,completed,11,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,37158,126,120073,126,124062,True,96.8,0.1,0.1
+S07,refactor,7,19:31:35.24,124.1,38.5,41.3,49.9,9041,completed,13,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,37589,1147,120504,1147,126041,True,95.6,0.9,0.1
+S07,refactor,8,19:31:44.33,126.4,21.0,43.6,52.7,5388,completed,15,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,40771,114,123686,114,128439,True,96.3,0.1,0.1
+S07,refactor,9,19:31:49.73,127.7,19.9,45.0,54.3,5042,completed,17,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,41898,116,124813,116,129776,True,96.2,0.1,0.1
+S07,refactor,10,19:31:54.80,129.0,17.0,46.2,55.8,4281,completed,19,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,42978,116,125893,116,131074,True,96.0,0.1,0.1
+S07,refactor,11,19:31:59.11,130.5,9.5,47.8,57.7,3137,completed,21,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,43836,635,126751,635,132674,True,95.5,0.5,0.1
+S07,refactor,12,19:32:02.29,131.3,36.0,48.5,58.6,7718,completed,23,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,44889,126,127804,126,133462,True,95.8,0.1,0.1
+S07,refactor,13,19:32:10.04,133.2,13.7,50.5,61.0,4316,completed,25,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,46675,126,129590,126,135466,True,95.7,0.1,0.1
+S07,refactor,14,19:32:14.52,136.5,14.6,53.7,64.9,7678,completed,27,"the three scripts in scripts/ have duplicated token counting logic, consolidate ",15490,80,67425,47208,2206,130123,2206,138783,True,93.8,1.6,0.1
+S07,refactor,15,19:32:22.23,138.9,18.7,56.2,67.9,8425,completed,29,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,50673,1100,133588,1100,141312,True,94.5,0.8,0.1
+S07,refactor,16,19:32:31.00,137.9,21.1,55.1,66.6,6549,completed,29,make sure nothing breaks after the refactor,15490,80,67425,50673,43,133588,43,140219,True,95.3,0.0,0.1
+S07,refactor,17,19:32:37.78,148.6,11.7,65.8,79.5,4702,completed,31,make sure nothing breaks after the refactor,15490,80,67425,51584,6991,134499,6991,149972,True,89.7,4.7,0.1
+S07,refactor,18,19:32:42.56,151.5,10.5,68.7,83.0,6067,completed,33,make sure nothing breaks after the refactor,15490,80,67425,59062,1825,141977,1825,152946,True,92.8,1.2,0.1
+S07,refactor,19,19:32:48.69,152.4,10.3,69.6,84.1,4530,completed,35,make sure nothing breaks after the refactor,15490,80,67425,61444,94,144359,94,153864,True,93.8,0.1,0.1
+S07,refactor,20,19:32:53.34,153.4,11.3,70.7,85.4,6153,completed,37,make sure nothing breaks after the refactor,15490,80,67425,62020,164,144935,164,154957,True,93.5,0.1,0.1
+S07,refactor,21,19:33:04.63,155.1,15.0,72.4,87.4,4899,completed,39,make sure nothing breaks after the refactor,15490,80,67425,62726,715,145641,715,156677,True,93.0,0.5,0.1
+S07,refactor,22,19:33:12.19,156.3,14.5,73.6,88.9,5934,completed,41,make sure nothing breaks after the refactor,15490,80,67425,64232,199,147147,199,157917,True,93.2,0.1,0.1
+S07,refactor,23,19:33:20.39,157.7,6.2,75.0,90.6,3890,completed,43,make sure nothing breaks after the refactor,15490,80,67425,65154,412,148069,412,159329,True,92.9,0.3,0.1
+S07,refactor,24,19:33:26.65,158.6,9.7,75.8,91.6,4246,completed,45,make sure nothing breaks after the refactor,15490,80,67425,65843,332,148758,332,160223,True,92.8,0.2,0.0
+S07,refactor,25,19:33:30.97,159.3,34.9,76.6,92.5,8521,completed,47,make sure nothing breaks after the refactor,15490,80,67425,66611,64,149526,64,160988,True,92.9,0.0,0.0
+S07,refactor,26,19:33:39.57,162.2,50.9,79.5,96.0,13588,completed,49,make sure nothing breaks after the refactor,15490,80,67425,68513,852,151428,852,163942,True,92.4,0.5,0.0
+S07,refactor,27,19:34:03.11,167.4,13.2,84.7,102.3,7580,completed,51,make sure nothing breaks after the refactor,15490,80,67425,72085,2312,155000,2312,169093,True,91.7,1.4,0.0
+S07,refactor,28,19:34:10.72,169.8,23.5,87.0,105.2,11257,completed,53,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,75506,1100,158421,1100,171474,True,92.4,0.6,0.0
+S07,refactor,29,19:34:33.10,168.7,21.5,85.9,103.9,8386,completed,53,run everything again end to end and commit it,15490,80,67425,75506,45,158421,45,170383,True,93.0,0.0,0.0
+S07,refactor,30,19:34:41.74,179.5,8.4,96.8,117.0,4469,completed,55,run everything again end to end and commit it,15490,80,67425,76675,6472,159590,6472,180301,True,88.5,3.6,0.0
+S07,refactor,31,19:34:46.32,189.4,24.2,106.6,128.9,8571,completed,57,run everything again end to end and commit it,15490,80,67425,83484,8712,166399,8712,190391,True,87.4,4.6,0.0
+S07,refactor,32,19:34:55.12,191.7,6.1,108.9,131.6,3974,completed,59,run everything again end to end and commit it,15490,80,67425,93250,630,176165,630,192722,True,91.4,0.3,0.0
+S07,refactor,33,19:34:59.19,194.4,14.2,111.7,135.0,7703,completed,61,run everything again end to end and commit it,15490,80,67425,94130,2099,177045,2099,195563,True,90.5,1.1,0.0
+S07,refactor,34,19:35:06.92,196.7,26.3,113.9,137.7,11794,completed,63,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15490,80,67425,97256,1100,180171,1100,197859,True,91.1,0.6,0.0
+S08,git_workflow,1,19:36:05.53,82.6,11.2,0.0,0.0,4762,completed,1,what's the current git status of this project,15403,80,67425,0,1865,0,84693,84485,True,0.0,100.2,0.1
+S08,git_workflow,2,19:36:11.05,84.9,5.5,2.3,2.8,5341,completed,3,what's the current git status of this project,15403,80,67425,2687,52,85515,52,86863,True,98.4,0.1,0.1
+S08,git_workflow,3,19:36:16.40,86.7,17.0,4.1,4.9,7487,completed,5,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,3269,1100,86097,1100,88651,True,97.1,1.2,0.1
+S08,git_workflow,4,19:36:29.55,85.6,10.5,3.0,3.6,4424,completed,5,stage only the scripts folder changes,15403,80,67425,3269,37,86097,37,87552,True,98.3,0.0,0.1
+S08,git_workflow,5,19:36:34.05,87.3,4.6,4.8,5.8,3217,completed,7,stage only the scripts folder changes,15403,80,67425,3890,52,86718,52,89352,True,97.1,0.1,0.1
+S08,git_workflow,6,19:36:37.28,88.9,32.7,6.3,7.6,14764,completed,9,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,4258,1100,87086,1100,90919,True,95.8,1.2,0.1
+S08,git_workflow,7,19:36:41.25,87.8,11.5,5.2,6.3,5112,completed,9,commit with a message that summarizes what the scripts do,15403,80,67425,4258,57,87086,57,89840,True,96.9,0.1,0.1
+S08,git_workflow,8,19:36:46.38,90.7,29.2,8.1,9.9,12830,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,5206,1100,88034,1100,92807,True,94.9,1.2,0.1
+S08,git_workflow,9,19:37:19.28,89.7,12.6,7.1,8.6,5378,completed,11,actually I want to amend the commit message to be more specific about the bugs t,15403,80,67425,5206,94,88034,94,91765,True,95.9,0.1,0.1
+S08,git_workflow,10,19:37:24.74,92.3,3.2,9.7,11.8,2033,completed,13,actually I want to amend the commit message to be more specific about the bugs t,15403,80,67425,6014,580,88842,580,94455,True,94.1,0.6,0.1
+S08,git_workflow,11,19:37:26.83,95.2,9.3,12.6,15.2,5266,completed,15,actually I want to amend the commit message to be more specific about the bugs t,15403,80,67425,6683,2506,89511,2506,97389,True,91.9,2.6,0.1
+S08,git_workflow,12,19:37:32.12,97.0,10.9,14.4,17.5,6270,completed,17,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,9793,1100,92621,1100,99255,True,93.3,1.1,0.1
+S08,git_workflow,13,19:37:40.07,96.4,10.6,13.8,16.8,4583,completed,17,this is good,15403,80,67425,9793,529,92621,529,98677,True,93.9,0.5,0.1
+S08,git_workflow,14,19:37:44.72,97.9,3.6,15.4,18.6,2365,completed,19,this is good,15403,80,67425,10819,241,93647,241,100244,True,93.4,0.2,0.1
+S08,git_workflow,15,19:37:47.11,99.4,39.8,16.8,20.4,18223,completed,21,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,11277,1100,94105,1100,101714,True,92.5,1.1,0.1
+S08,git_workflow,16,19:37:49.71,98.3,16.1,15.7,19.0,7203,completed,21,push it to github,15403,80,67425,11277,17,94105,17,100595,True,93.5,0.0,0.1
+S08,git_workflow,17,19:37:56.99,100.8,3.5,18.2,22.0,2373,completed,23,push it to github,15403,80,67425,12175,146,95003,146,103152,True,92.1,0.1,0.1
+S08,git_workflow,18,19:37:59.42,101.7,5.4,19.1,23.2,3392,completed,25,push it to github,15403,80,67425,12423,598,95251,598,104098,True,91.5,0.6,0.1
+S08,git_workflow,19,19:38:02.84,103.3,19.9,20.7,25.1,8664,completed,27,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,13395,1100,96223,1100,105725,True,91.0,1.0,0.1
+S08,git_workflow,20,19:38:14.95,102.2,5.4,19.6,23.8,2632,completed,27,yeah do it,15403,80,67425,13395,10,96223,10,104599,True,92.0,0.0,0.1
+S08,git_workflow,21,19:38:35.72,103.3,3.8,20.7,25.1,2429,completed,29,yeah do it,15403,80,67425,13601,298,96429,298,105742,True,91.2,0.3,0.1
+S08,git_workflow,22,19:38:39.13,103.8,2.7,21.2,25.7,2380,completed,31,yeah do it,15403,80,67425,14009,136,96837,136,106229,True,91.2,0.1,0.1
+S08,git_workflow,23,19:38:41.52,105.2,26.6,22.6,27.4,11464,completed,33,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15403,80,67425,14338,1100,97166,1100,107673,True,90.2,1.0,0.1
+S09,mixed_social_code,1,19:39:30.13,82.7,40.2,0.0,0.0,17251,completed,1,hey quick question — do you think LLMs will ever be able to accurately count the,15472,80,67425,0,1931,0,84828,84620,True,0.0,100.2,0.1
+S09,mixed_social_code,2,19:39:47.40,89.3,18.1,6.6,8.0,7749,completed,3,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,4990,1100,87887,1100,91385,True,96.2,1.2,0.1
+S09,mixed_social_code,3,19:39:50.07,88.4,6.2,5.7,6.9,3249,completed,3,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,4990,219,87887,219,90468,True,97.1,0.2,0.1
+S09,mixed_social_code,4,19:39:53.35,89.5,1.8,6.8,8.2,2089,completed,5,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,5508,119,88405,119,91572,True,96.5,0.1,0.1
+S09,mixed_social_code,5,19:39:55.47,89.8,3.3,7.1,8.6,2031,completed,7,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,5662,84,88559,84,91915,True,96.3,0.1,0.1
+S09,mixed_social_code,6,19:39:57.53,92.4,6.7,9.6,11.7,2965,completed,9,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,5847,2049,88744,2049,94434,True,94.0,2.2,0.1
+S09,mixed_social_code,7,19:40:00.53,95.4,5.8,12.6,15.3,2902,completed,11,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,8163,2285,91060,2285,97381,True,93.5,2.3,0.1
+S09,mixed_social_code,8,19:40:04.37,101.5,98.1,18.8,22.7,20308,completed,13,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,10693,5417,93590,5417,103684,True,90.3,5.2,0.1
+S09,mixed_social_code,9,19:40:49.05,107.2,14.4,24.5,29.6,5399,completed,15,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,21050,643,103947,643,109491,True,94.9,0.6,0.1
+S09,mixed_social_code,10,19:40:54.47,108.2,9.3,25.5,30.8,3460,completed,17,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,22382,124,105279,124,110548,True,95.2,0.1,0.1
+S09,mixed_social_code,11,19:40:57.97,109.0,10.3,26.2,31.7,3246,completed,19,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,22927,124,105824,124,111311,True,95.1,0.1,0.1
+S09,mixed_social_code,12,19:41:01.26,109.7,9.8,27.0,32.7,5347,completed,21,"interesting. anyway, back to the project — add a new session type to all_session",15472,80,67425,23500,124,106397,124,112102,True,94.9,0.1,0.1
+S09,mixed_social_code,13,19:41:06.62,111.7,23.2,29.0,35.1,10343,completed,23,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,24402,1100,107299,1100,114140,True,94.0,1.0,0.1
+S09,mixed_social_code,14,19:41:14.55,110.7,5.2,28.0,33.8,2904,completed,23,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,24402,68,107299,68,113072,True,94.9,0.1,0.1
+S09,mixed_social_code,15,19:41:17.53,111.7,1.8,29.0,35.0,2201,completed,25,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,24703,143,107600,143,114123,True,94.3,0.1,0.1
+S09,mixed_social_code,16,19:41:19.76,112.0,3.0,29.3,35.4,1956,completed,27,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,24875,76,107772,76,114452,True,94.2,0.1,0.1
+S09,mixed_social_code,17,19:41:21.82,113.3,5.0,30.5,36.9,2888,completed,29,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,25033,937,107930,937,115736,True,93.3,0.8,0.1
+S09,mixed_social_code,18,19:41:24.74,115.8,9.5,33.1,40.0,3957,completed,31,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,26168,2012,109065,2012,118258,True,92.2,1.7,0.1
+S09,mixed_social_code,19,19:41:28.71,116.5,4.4,33.8,40.9,2379,completed,33,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,28622,124,111519,124,119068,True,93.7,0.1,0.1
+S09,mixed_social_code,20,19:41:31.17,118.9,4.7,36.2,43.8,2934,completed,35,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,28877,2026,111774,2026,121513,True,92.0,1.7,0.1
+S09,mixed_social_code,21,19:41:34.16,119.4,9.4,36.7,44.4,5708,completed,37,now run analyze.py and check if S11 shows up correctly in the output,15472,80,67425,31100,52,113997,52,122027,True,93.4,0.0,0.1
+S09,mixed_social_code,22,19:41:39.89,121.4,39.7,38.6,46.7,19463,completed,39,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,31846,1100,114743,1100,123983,True,92.5,0.9,0.1
+S09,mixed_social_code,23,19:41:48.95,120.3,26.2,37.6,45.4,12206,completed,39,"the overhead for S11 seems off, investigate why",15472,80,67425,31846,47,114743,47,122894,True,93.4,0.0,0.1
+S09,mixed_social_code,24,19:42:01.19,130.2,4.0,47.4,57.4,2325,completed,41,"the overhead for S11 seems off, investigate why",15472,80,67425,33441,5553,116338,5553,132775,True,87.6,4.2,0.1
+S09,mixed_social_code,25,19:42:03.56,137.8,4.2,55.1,66.6,3058,completed,43,"the overhead for S11 seems off, investigate why",15472,80,67425,39162,6791,122059,6791,140296,True,87.0,4.8,0.1
+S09,mixed_social_code,26,19:42:06.68,138.4,24.6,55.7,67.3,6806,completed,45,"the overhead for S11 seems off, investigate why",15472,80,67425,46151,172,129048,172,140931,True,91.6,0.1,0.1
+S09,mixed_social_code,27,19:42:13.61,140.3,40.2,57.6,69.6,10181,completed,47,"the overhead for S11 seems off, investigate why",15472,80,67425,47474,494,130371,494,142868,True,91.3,0.3,0.1
+S09,mixed_social_code,28,19:42:23.87,142.9,5.6,60.2,72.7,3351,completed,49,"the overhead for S11 seems off, investigate why",15472,80,67425,49979,338,132876,338,145493,True,91.3,0.2,0.1
+S09,mixed_social_code,29,19:42:42.87,145.5,46.1,62.8,75.9,17752,completed,51,[Request interrupted by user for tool use],15472,80,67425,50534,2146,133431,2146,148195,True,90.0,1.4,0.1
+S09,mixed_social_code,30,19:43:00.70,153.0,16.8,70.3,85.0,9239,completed,53,[Request interrupted by user for tool use],15472,80,67425,55475,1572,138372,1572,155894,True,88.8,1.0,0.1
+S09,mixed_social_code,31,19:43:09.97,159.9,16.5,77.2,93.4,5080,completed,55,[Request interrupted by user for tool use],15472,80,67425,58074,5194,140971,5194,162752,True,86.6,3.2,0.0
+S09,mixed_social_code,32,19:43:15.08,161.1,26.0,78.4,94.7,5221,completed,57,[Request interrupted by user for tool use],15472,80,67425,64059,124,146956,124,163911,True,89.7,0.1,0.0
+S09,mixed_social_code,33,19:43:20.33,162.6,24.8,79.8,96.5,4926,completed,59,[Request interrupted by user for tool use],15472,80,67425,65374,124,148271,124,165444,True,89.6,0.1,0.0
+S09,mixed_social_code,34,19:43:25.29,164.1,52.4,81.3,98.3,8358,completed,61,[Request interrupted by user for tool use],15472,80,67425,66696,124,149593,124,166984,True,89.6,0.1,0.0
+S09,mixed_social_code,35,19:43:33.68,166.9,9.1,84.2,101.7,5208,completed,63,[Request interrupted by user for tool use],15472,80,67425,69377,124,152274,124,169863,True,89.6,0.1,0.0
+S09,mixed_social_code,36,19:43:38.97,167.5,10.5,84.8,102.5,3328,completed,65,[Request interrupted by user for tool use],15472,80,67425,69872,17,152769,17,170516,True,89.6,0.0,0.0
+S09,mixed_social_code,37,19:43:42.34,168.8,4.3,86.1,104.1,3611,completed,67,[Request interrupted by user for tool use],15472,80,67425,70338,643,153235,643,171831,True,89.2,0.4,0.0
+S09,mixed_social_code,38,19:43:46.05,171.2,12.4,88.5,107.0,7146,completed,69,[Request interrupted by user for tool use],15472,80,67425,71138,2026,154035,2026,174302,True,88.4,1.2,0.0
+S09,mixed_social_code,39,19:43:53.22,173.2,1.9,90.5,109.4,2760,completed,71,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15472,80,67425,73918,1100,156815,1100,176321,True,88.9,0.6,0.0
+S10,open_source_prep,1,19:44:21.44,82.8,16.8,0.0,0.0,6482,completed,1,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,0,1967,0,84941,84736,True,0.0,100.2,0.1
+S10,open_source_prep,2,19:44:29.03,94.5,11.5,11.6,14.1,4382,completed,3,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,2995,9256,85969,9256,96931,True,88.7,9.5,0.1
+S10,open_source_prep,3,19:44:36.18,101.3,6.6,18.5,22.3,3130,completed,5,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,12715,5704,95689,5704,103776,True,92.2,5.5,0.1
+S10,open_source_prep,4,19:44:41.97,107.9,20.4,25.1,30.3,6146,completed,7,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,18675,5703,101649,5703,110454,True,92.0,5.2,0.1
+S10,open_source_prep,5,19:44:48.17,109.6,3.5,26.8,32.4,2648,completed,9,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,25275,86,108249,86,112236,True,96.4,0.1,0.1
+S10,open_source_prep,6,19:44:50.85,111.7,64.4,28.9,34.8,31093,completed,11,look at everything in this project and tell me what's missing for it to be a pro,15549,80,67425,25475,1608,108449,1608,114284,True,94.9,1.4,0.1
+S10,open_source_prep,7,19:45:21.96,117.9,26.4,35.1,42.4,11566,completed,13,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15549,80,67425,32000,1100,114974,1100,120592,True,95.3,0.9,0.1
+S10,open_source_prep,8,19:45:35.61,116.8,64.6,34.0,41.0,17624,completed,13,add whatever is missing,15549,80,67425,32000,23,114974,23,119479,True,96.2,0.0,0.1
+S10,open_source_prep,9,19:45:53.86,123.7,27.3,40.9,49.4,5039,completed,15,add whatever is missing,15549,80,67425,35013,719,117987,719,126547,True,93.2,0.6,0.1
+S10,open_source_prep,10,19:46:01.34,125.5,39.5,42.7,51.5,10968,completed,17,add whatever is missing,15549,80,67425,37036,118,120010,118,128385,True,93.5,0.1,0.1
+S10,open_source_prep,11,19:46:12.35,128.0,73.6,45.2,54.6,16428,completed,19,add whatever is missing,15549,80,67425,39026,143,122000,143,130957,True,93.2,0.1,0.1
+S10,open_source_prep,12,19:46:28.84,132.6,132.8,49.8,60.1,30859,completed,21,add whatever is missing,15549,80,67425,42631,358,125605,358,135658,True,92.6,0.3,0.1
+S10,open_source_prep,13,19:46:59.75,139.7,5.5,56.9,68.7,7970,completed,23,add whatever is missing,15549,80,67425,49640,147,132614,147,143002,True,92.7,0.1,0.1
+S10,open_source_prep,14,19:47:07.73,139.7,0.2,56.9,68.7,7173,completed,23,add whatever is missing,15549,80,67425,49640,147,132614,147,142988,True,92.7,0.1,0.1
+S10,open_source_prep,15,19:47:55.75,139.8,8.0,57.0,68.8,7046,completed,23,continue,15549,80,67425,49640,155,132614,155,143036,True,92.7,0.1,0.1
+S10,open_source_prep,16,19:48:02.81,139.8,0.2,56.9,68.8,11232,completed,23,continue,15549,80,67425,49640,155,132614,155,143022,True,92.7,0.1,0.1
+S10,open_source_prep,17,19:48:27.57,139.8,8.2,57.0,68.8,7571,completed,23,continue,15549,80,67425,49640,175,132614,175,143082,True,92.7,0.1,0.1
+S10,open_source_prep,18,19:48:35.15,139.8,0.2,57.0,68.8,7384,completed,23,continue,15549,80,67425,49640,175,132614,175,143068,True,92.7,0.1,0.1
+S10,open_source_prep,19,19:49:19.48,139.9,15.6,57.1,68.9,10982,completed,23,continue,15549,80,67425,49640,220,132614,220,143153,True,92.6,0.2,0.1
+S10,open_source_prep,20,19:49:30.48,139.9,0.2,57.1,68.9,11083,completed,23,continue,15549,80,67425,49640,220,132614,220,143139,True,92.6,0.2,0.1
+S10,open_source_prep,21,19:50:18.96,82.9,21.5,0.1,0.1,7507,completed,1,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,0,1967,0,85047,84848,True,0.0,100.2,0.1
+S10,open_source_prep,22,19:50:26.49,109.8,12.7,26.9,32.5,5015,completed,3,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,3344,23069,86424,23069,111896,True,77.2,20.6,0.1
+S10,open_source_prep,23,19:50:32.49,120.7,21.5,37.9,45.8,6956,completed,5,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,26896,8983,109976,8983,122664,True,89.7,7.3,0.1
+S10,open_source_prep,24,19:50:39.52,122.8,6.7,39.9,48.2,3210,completed,7,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,36756,252,119836,252,124769,True,96.0,0.2,0.1
+S10,open_source_prep,25,19:50:45.76,129.4,44.4,46.6,56.3,21533,completed,9,look at everything in this project and tell me what's missing for it to be a pro,15655,80,67425,37239,5691,120319,5691,131390,True,91.6,4.3,0.1
+S10,open_source_prep,26,19:51:07.32,134.3,30.2,51.5,62.2,12515,completed,11,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15655,80,67425,46529,1100,129609,1100,136345,True,95.1,0.8,0.1
+S10,open_source_prep,27,19:51:42.11,133.2,15.5,50.4,60.9,10305,completed,11,add basic required features out of this list,15655,80,67425,46529,44,129609,44,135253,True,95.8,0.0,0.1
+S10,open_source_prep,28,19:51:52.43,133.2,0.2,50.4,60.8,14378,completed,11,add basic required features out of this list,15655,80,67425,46529,44,129609,44,135239,True,95.8,0.0,0.1
+S10,open_source_prep,29,19:52:16.38,133.8,45.1,51.0,61.6,13914,completed,11,add basic required features out of this list,15655,80,67425,46529,588,129609,588,135852,True,95.4,0.4,0.1
+S10,open_source_prep,30,19:52:30.69,139.1,15.2,56.2,67.9,4847,completed,13,add basic required features out of this list,15655,80,67425,49326,483,132406,483,141228,True,93.8,0.3,0.1
+S10,open_source_prep,31,19:52:38.04,140.2,5.6,57.4,69.3,11426,completed,15,add basic required features out of this list,15655,80,67425,50482,134,133562,134,142446,True,93.8,0.1,0.1
+S10,open_source_prep,32,19:52:49.48,140.2,0.2,57.4,69.3,6567,completed,15,add basic required features out of this list,15655,80,67425,50482,134,133562,134,142432,True,93.8,0.1,0.1
+S10,open_source_prep,33,19:53:10.92,140.3,7.4,57.5,69.4,3869,completed,15,whats 8+8,15655,80,67425,50482,143,133562,143,142481,True,93.7,0.1,0.1
+S10,open_source_prep,34,19:53:14.81,142.6,29.6,59.8,72.2,12907,completed,17,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15655,80,67425,51001,1100,134081,1100,144887,True,92.5,0.8,0.1
+S10,open_source_prep,35,19:53:28.30,141.5,16.9,58.7,70.9,6331,completed,17,push everything to github,15655,80,67425,51001,25,134081,25,143776,True,93.3,0.0,0.1
+S10,open_source_prep,36,19:53:34.82,152.9,25.4,70.1,84.6,7533,completed,19,push everything to github,15655,80,67425,51895,8861,134975,8861,155439,True,86.8,5.7,0.1
+S10,open_source_prep,37,19:53:42.57,155.8,4.7,72.9,88.1,3791,completed,21,push everything to github,15655,80,67425,61703,1311,144783,1311,158341,True,91.4,0.8,0.1
+S10,open_source_prep,38,19:53:47.43,156.4,10.5,73.5,88.8,5976,completed,23,push everything to github,15655,80,67425,63128,113,146208,113,158975,True,92.0,0.1,0.1
+S10,open_source_prep,39,19:53:53.42,158.5,33.1,75.6,91.3,21989,completed,25,[SUGGESTION MODE: Suggest what the user might naturally type next into Claude Co,15655,80,67425,64098,1100,147178,1100,161099,True,91.4,0.7,0.0

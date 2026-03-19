@@ -5,17 +5,27 @@ Real data from events.json — 10 sessions of captured gateway traffic.
 Session detection: project_key_id — each Claude Code session gets a unique
 API key in the gateway, making session boundaries exact and unambiguous.
 
-Cache analysis:
-  Two views of cached vs uncached content per turn:
-    VIEW 1 — strict:        tools counted as UNCACHED (they have no cache_control)
-    VIEW 2 — tools_cached:  tools counted as CACHED (constant across all calls)
+Cache analysis (consistent with Anthropic prompt caching docs):
 
-  Categories tracked:
-    system_cached      — system blocks with cache_control: ephemeral
-    system_uncached    — system blocks without cache_control (billing header)
-    tools              — all 25 tool schemas (always 67,425 chars, no cache_control)
-    messages_cached    — message blocks with cache_control (latest boundary marker)
-    messages_uncached  — message blocks without cache_control (history, reminders)
+  cache_read    — content already in cache from previous calls (cache hit this turn)
+                  = system_prompt + tools + all prior message turns
+                  = 0 on turn 1 (nothing cached yet)
+
+  cache_write   — new content being written to cache for the first time this turn
+                  = entire last user message (new input + all tool results in it)
+                  = system_prompt + tools + last user message on turn 1
+
+  billing_header — ~80-char system block outside the cache prefix, never cached
+
+  Breakdown sub-columns (for stacked chart):
+    system_prompt_chars  — system blocks with cache_control marker
+    billing_header_chars — system blocks without cache_control marker
+    tools_chars          — all 25 tool schemas (constant, assumed cached)
+    prior_history_chars  — all message turns before the last user message
+    new_input_chars      — the last user message (cache_write this turn)
+
+  Turn 1 detection: prior_history_chars == 0 means nothing was cached before,
+                    so system_prompt + tools are also cache_write this turn.
 
 Usage:
     python analyze.py events.json [output_dir]
@@ -70,27 +80,54 @@ def get_message_count(preview):
     except (json.JSONDecodeError, KeyError, TypeError):
         return 0
 
+def get_msg_chars(msg):
+    """Total chars in a message, handling both string and list content."""
+    content = msg.get('content', [])
+    if isinstance(content, str):
+        return len(content)
+    total = 0
+    for block in content:
+        if not isinstance(block, dict):
+            continue
+        btype = block.get('type', '')
+        if btype == 'text':
+            total += len(block.get('text', ''))
+        elif btype == 'thinking':
+            total += len(block.get('thinking', ''))
+        elif btype == 'tool_use':
+            total += len(json.dumps(block.get('input', {})))
+        elif btype == 'tool_result':
+            c = block.get('content', '')
+            total += len(c) if isinstance(c, str) else len(json.dumps(c))
+        else:
+            total += len(json.dumps(block))
+    return total
+
 def parse_cache_breakdown(preview):
     """
-    Parse a payload's input_preview and return char counts by cache category.
+    Parse a payload and return cache category char counts.
 
     Returns dict with keys:
-      system_cached_chars      — system blocks marked cache_control: ephemeral
-      system_uncached_chars    — system blocks without cache_control
-      tools_chars              — all tool schemas (no cache_control, but constant)
-      messages_cached_chars    — message blocks with cache_control
-      messages_uncached_chars  — message blocks without cache_control
-      total_preview_chars      — total length of the preview string
-      parse_ok                 — bool, False if preview could not be parsed
+      system_prompt_chars   — system blocks with cache_control marker
+      billing_header_chars  — system blocks without cache_control marker (~80 chars)
+      tools_chars           — all tool schemas (constant across all calls)
+      prior_history_chars   — all message turns before the last user message
+      new_input_chars       — the last user message (new this turn)
+      cache_read_chars      — content read from cache this turn
+      cache_write_chars     — content written to cache this turn
+      total_preview_chars   — total length of preview string
+      parse_ok              — False if preview could not be parsed
     """
     empty = {
-        'system_cached_chars': 0,
-        'system_uncached_chars': 0,
-        'tools_chars': 0,
-        'messages_cached_chars': 0,
-        'messages_uncached_chars': 0,
-        'total_preview_chars': len(preview) if preview else 0,
-        'parse_ok': False,
+        'system_prompt_chars':  0,
+        'billing_header_chars': 0,
+        'tools_chars':          0,
+        'prior_history_chars':  0,
+        'new_input_chars':      0,
+        'cache_read_chars':     0,
+        'cache_write_chars':    0,
+        'total_preview_chars':  len(preview) if preview else 0,
+        'parse_ok':             False,
     }
     if not preview:
         return empty
@@ -107,39 +144,39 @@ def parse_cache_breakdown(preview):
     for block in payload.get('system', []):
         chars = len(block.get('text', ''))
         if block.get('cache_control'):
-            r['system_cached_chars'] += chars
+            r['system_prompt_chars'] += chars
         else:
-            r['system_uncached_chars'] += chars
+            r['billing_header_chars'] += chars
 
-    # Tool schemas — always 25 tools, always 67,425 chars, never have cache_control
+    # Tool schemas
     for tool in payload.get('tools', []):
         r['tools_chars'] += len(json.dumps(tool))
 
-    # Messages — walk every block in every turn
-    for msg in payload.get('messages', []):
-        content = msg.get('content', [])
-        if not isinstance(content, list):
-            continue
-        for block in content:
-            if not isinstance(block, dict):
-                continue
-            btype = block.get('type', '')
-            if btype == 'text':
-                chars = len(block.get('text', ''))
-            elif btype == 'thinking':
-                chars = len(block.get('thinking', ''))
-            elif btype == 'tool_use':
-                chars = len(json.dumps(block.get('input', {})))
-            elif btype == 'tool_result':
-                c = block.get('content', '')
-                chars = len(c) if isinstance(c, str) else len(json.dumps(c))
-            else:
-                chars = len(json.dumps(block))
+    # Messages — split into prior history vs last user message
+    msgs = payload.get('messages', [])
+    last_user_idx = None
+    for i in range(len(msgs) - 1, -1, -1):
+        if msgs[i].get('role') == 'user':
+            last_user_idx = i
+            break
 
-            if block.get('cache_control'):
-                r['messages_cached_chars'] += chars
-            else:
-                r['messages_uncached_chars'] += chars
+    for i, msg in enumerate(msgs):
+        chars = get_msg_chars(msg)
+        if i == last_user_idx:
+            r['new_input_chars'] += chars
+        else:
+            r['prior_history_chars'] += chars
+
+    # cache_read vs cache_write
+    # Turn 1: prior_history == 0, so system+tools also being cached for first time
+    is_turn_1 = (r['prior_history_chars'] == 0)
+    if is_turn_1:
+        r['cache_read_chars']  = 0
+        r['cache_write_chars'] = (r['system_prompt_chars'] + r['tools_chars'] +
+                                   r['prior_history_chars'] + r['new_input_chars'])
+    else:
+        r['cache_read_chars']  = r['system_prompt_chars'] + r['tools_chars'] + r['prior_history_chars']
+        r['cache_write_chars'] = r['new_input_chars']
 
     return r
 
@@ -185,68 +222,55 @@ def build_session_metrics(data, completed_by_rid, errors_by_rid):
             cb = parse_cache_breakdown(e.get("input_preview", ""))
             if cb['parse_ok']:
                 parse_ok_count += 1
-                for k in ('system_cached_chars', 'system_uncached_chars', 'tools_chars',
-                          'messages_cached_chars', 'messages_uncached_chars', 'total_preview_chars'):
+                for k in ('system_prompt_chars', 'billing_header_chars', 'tools_chars',
+                          'prior_history_chars', 'new_input_chars',
+                          'cache_read_chars', 'cache_write_chars', 'total_preview_chars'):
                     agg[k] += cb[k]
 
-        total_chars = agg['total_preview_chars']
-
-        # VIEW 1: tools = uncached
-        v1_cached   = agg['system_cached_chars'] + agg['messages_cached_chars']
-        v1_uncached = agg['system_uncached_chars'] + agg['tools_chars'] + agg['messages_uncached_chars']
-
-        # VIEW 2: tools = cached (constant content)
-        v2_cached   = agg['system_cached_chars'] + agg['tools_chars'] + agg['messages_cached_chars']
-        v2_uncached = agg['system_uncached_chars'] + agg['messages_uncached_chars']
-
+        tc = agg['total_preview_chars']
         n = len(sess)
         n_ok = len(latencies)
         baseline = req_sizes[0]
         peak = max(req_sizes)
 
         rows.append({
-            "session_id":                   sid,
-            "label":                        label,
-            "project_key_id":               key,
-            "date":                         sess[0]["timestamp"][:10],
-            "start_time":                   sess[0]["timestamp"][11:19],
-            "end_time":                     sess[-1]["timestamp"][11:19],
-            "llm_calls":                    n,
-            "calls_completed":              n_ok,
-            "calls_errored":                err_count,
-            "error_rate_pct":               round(err_count / n * 100, 1),
-            "duration_s":                   round((end_ts - start_ts).total_seconds(), 1),
-            "baseline_req_kb":              round(baseline / 1024, 1),
-            "peak_req_kb":                  round(peak / 1024, 1),
-            "avg_req_kb":                   round(sum(req_sizes) / n / 1024, 1),
-            "total_req_kb":                 round(sum(req_sizes) / 1024, 1),
-            "total_resp_kb":                round(sum(resp_sizes) / 1024, 1),
-            "req_growth_kb":                round((peak - baseline) / 1024, 1),
-            "req_growth_pct":               round((peak - baseline) / baseline * 100, 1),
-            "avg_resp_kb":                  round(sum(resp_sizes) / n_ok / 1024, 1) if n_ok else 0,
-            "req_resp_ratio":               round(sum(req_sizes) / max(sum(resp_sizes), 1), 1),
-            "avg_latency_ms":               round(sum(latencies) / n_ok) if n_ok else 0,
-            "p95_latency_ms":               sorted(latencies)[int(n_ok * 0.95)] if n_ok else 0,
-            "max_latency_ms":               max(latencies) if latencies else 0,
-            "first_user_msg":               get_user_message(sess[0].get("input_preview", ""))[:120],
-            # cache breakdown — totals across all turns (chars)
-            "cache_system_cached_chars":    agg['system_cached_chars'],
-            "cache_system_uncached_chars":  agg['system_uncached_chars'],
-            "cache_tools_chars":            agg['tools_chars'],
-            "cache_messages_cached_chars":  agg['messages_cached_chars'],
-            "cache_messages_uncached_chars":agg['messages_uncached_chars'],
-            "cache_total_chars":            total_chars,
-            "cache_turns_parsed":           parse_ok_count,
-            # view 1: tools uncached
-            "v1_cached_chars":              v1_cached,
-            "v1_uncached_chars":            v1_uncached,
-            "v1_cached_pct":               round(v1_cached / max(total_chars, 1) * 100, 1),
-            "v1_uncached_pct":             round(v1_uncached / max(total_chars, 1) * 100, 1),
-            # view 2: tools cached
-            "v2_cached_chars":              v2_cached,
-            "v2_uncached_chars":            v2_uncached,
-            "v2_cached_pct":               round(v2_cached / max(total_chars, 1) * 100, 1),
-            "v2_uncached_pct":             round(v2_uncached / max(total_chars, 1) * 100, 1),
+            "session_id":           sid,
+            "label":                label,
+            "project_key_id":       key,
+            "date":                 sess[0]["timestamp"][:10],
+            "start_time":           sess[0]["timestamp"][11:19],
+            "end_time":             sess[-1]["timestamp"][11:19],
+            "llm_calls":            n,
+            "calls_completed":      n_ok,
+            "calls_errored":        err_count,
+            "error_rate_pct":       round(err_count / n * 100, 1),
+            "duration_s":           round((end_ts - start_ts).total_seconds(), 1),
+            "baseline_req_kb":      round(baseline / 1024, 1),
+            "peak_req_kb":          round(peak / 1024, 1),
+            "avg_req_kb":           round(sum(req_sizes) / n / 1024, 1),
+            "total_req_kb":         round(sum(req_sizes) / 1024, 1),
+            "total_resp_kb":        round(sum(resp_sizes) / 1024, 1),
+            "req_growth_kb":        round((peak - baseline) / 1024, 1),
+            "req_growth_pct":       round((peak - baseline) / baseline * 100, 1),
+            "avg_resp_kb":          round(sum(resp_sizes) / n_ok / 1024, 1) if n_ok else 0,
+            "req_resp_ratio":       round(sum(req_sizes) / max(sum(resp_sizes), 1), 1),
+            "avg_latency_ms":       round(sum(latencies) / n_ok) if n_ok else 0,
+            "p95_latency_ms":       sorted(latencies)[int(n_ok * 0.95)] if n_ok else 0,
+            "max_latency_ms":       max(latencies) if latencies else 0,
+            "first_user_msg":       get_user_message(sess[0].get("input_preview", ""))[:120],
+            # cache breakdown — totals across all turns
+            "system_prompt_chars":  agg['system_prompt_chars'],
+            "billing_header_chars": agg['billing_header_chars'],
+            "tools_chars":          agg['tools_chars'],
+            "prior_history_chars":  agg['prior_history_chars'],
+            "new_input_chars":      agg['new_input_chars'],
+            "cache_read_chars":     agg['cache_read_chars'],
+            "cache_write_chars":    agg['cache_write_chars'],
+            "cache_total_chars":    tc,
+            "cache_turns_parsed":   parse_ok_count,
+            "cache_read_pct":       round(agg['cache_read_chars']     / max(tc, 1) * 100, 1),
+            "cache_write_pct":      round(agg['cache_write_chars']    / max(tc, 1) * 100, 1),
+            "billing_header_pct":   round(agg['billing_header_chars'] / max(tc, 1) * 100, 1),
         })
     return rows
 
@@ -267,101 +291,82 @@ def build_turn_metrics(data, completed_by_rid, errors_by_rid):
             req_bytes = e["request_size_bytes"]
 
             cb = parse_cache_breakdown(e.get("input_preview", ""))
-            total_chars = cb['total_preview_chars']
-
-            # view 1: tools uncached
-            v1_cached   = cb['system_cached_chars'] + cb['messages_cached_chars']
-            v1_uncached = cb['system_uncached_chars'] + cb['tools_chars'] + cb['messages_uncached_chars']
-
-            # view 2: tools cached
-            v2_cached   = cb['system_cached_chars'] + cb['tools_chars'] + cb['messages_cached_chars']
-            v2_uncached = cb['system_uncached_chars'] + cb['messages_uncached_chars']
+            tc = cb['total_preview_chars']
 
             rows.append({
-                "session_id":                   sid,
-                "label":                        label,
-                "turn":                         turn_idx + 1,
-                "timestamp":                    e["timestamp"][11:22],
-                "request_kb":                   round(req_bytes / 1024, 1),
-                "response_kb":                  round(completed["response_size_bytes"] / 1024, 1) if completed else 0,
-                "growth_from_base_kb":          round((req_bytes - baseline) / 1024, 1),
-                "growth_from_base_pct":         round((req_bytes - baseline) / baseline * 100, 1),
-                "latency_ms":                   completed["latency_ms"] if completed else None,
-                "status":                       "completed" if completed else ("error" if is_error else "no_response"),
-                "msg_count_in_payload":         get_message_count(e.get("input_preview", "")),
-                "user_message":                 get_user_message(e.get("input_preview", ""))[:80],
-                # cache breakdown — this turn only (chars)
-                "cache_system_cached_chars":    cb['system_cached_chars'],
-                "cache_system_uncached_chars":  cb['system_uncached_chars'],
-                "cache_tools_chars":            cb['tools_chars'],
-                "cache_messages_cached_chars":  cb['messages_cached_chars'],
-                "cache_messages_uncached_chars":cb['messages_uncached_chars'],
-                "cache_total_chars":            total_chars,
-                "cache_parse_ok":               cb['parse_ok'],
-                # view 1: tools uncached
-                "v1_cached_chars":              v1_cached,
-                "v1_uncached_chars":            v1_uncached,
-                "v1_cached_pct":               round(v1_cached / max(total_chars, 1) * 100, 1),
-                "v1_uncached_pct":             round(v1_uncached / max(total_chars, 1) * 100, 1),
-                # view 2: tools cached
-                "v2_cached_chars":              v2_cached,
-                "v2_uncached_chars":            v2_uncached,
-                "v2_cached_pct":               round(v2_cached / max(total_chars, 1) * 100, 1),
-                "v2_uncached_pct":             round(v2_uncached / max(total_chars, 1) * 100, 1),
+                "session_id":           sid,
+                "label":                label,
+                "turn":                 turn_idx + 1,
+                "timestamp":            e["timestamp"][11:22],
+                "request_kb":           round(req_bytes / 1024, 1),
+                "response_kb":          round(completed["response_size_bytes"] / 1024, 1) if completed else 0,
+                "growth_from_base_kb":  round((req_bytes - baseline) / 1024, 1),
+                "growth_from_base_pct": round((req_bytes - baseline) / baseline * 100, 1),
+                "latency_ms":           completed["latency_ms"] if completed else None,
+                "status":               "completed" if completed else ("error" if is_error else "no_response"),
+                "msg_count_in_payload": get_message_count(e.get("input_preview", "")),
+                "user_message":         get_user_message(e.get("input_preview", ""))[:80],
+                # cache breakdown — this turn only
+                "system_prompt_chars":  cb['system_prompt_chars'],
+                "billing_header_chars": cb['billing_header_chars'],
+                "tools_chars":          cb['tools_chars'],
+                "prior_history_chars":  cb['prior_history_chars'],
+                "new_input_chars":      cb['new_input_chars'],
+                "cache_read_chars":     cb['cache_read_chars'],
+                "cache_write_chars":    cb['cache_write_chars'],
+                "cache_total_chars":    tc,
+                "cache_parse_ok":       cb['parse_ok'],
+                "cache_read_pct":       round(cb['cache_read_chars']     / max(tc, 1) * 100, 1),
+                "cache_write_pct":      round(cb['cache_write_chars']    / max(tc, 1) * 100, 1),
+                "billing_header_pct":   round(cb['billing_header_chars'] / max(tc, 1) * 100, 1),
             })
     return rows
 
 def compute_summary(session_rows, turn_rows):
-    total_calls  = sum(r["llm_calls"] for r in session_rows)
-    total_errors = sum(r["calls_errored"] for r in session_rows)
-    total_req_kb = sum(r["total_req_kb"] for r in session_rows)
+    total_calls   = sum(r["llm_calls"] for r in session_rows)
+    total_errors  = sum(r["calls_errored"] for r in session_rows)
+    total_req_kb  = sum(r["total_req_kb"] for r in session_rows)
     total_resp_kb = sum(r["total_resp_kb"] for r in session_rows)
-    latencies = sorted(r["latency_ms"] for r in turn_rows if r["latency_ms"] is not None)
+    latencies     = sorted(r["latency_ms"] for r in turn_rows if r["latency_ms"] is not None)
 
-    parsed = [r for r in turn_rows if r["cache_parse_ok"]]
-    total_chars  = sum(r["cache_total_chars"] for r in parsed)
-    sys_cached   = sum(r["cache_system_cached_chars"] for r in parsed)
-    sys_uncached = sum(r["cache_system_uncached_chars"] for r in parsed)
-    tools        = sum(r["cache_tools_chars"] for r in parsed)
-    msg_cached   = sum(r["cache_messages_cached_chars"] for r in parsed)
-    msg_uncached = sum(r["cache_messages_uncached_chars"] for r in parsed)
-
-    v1_cached   = sys_cached + msg_cached
-    v1_uncached = sys_uncached + tools + msg_uncached
-    v2_cached   = sys_cached + tools + msg_cached
-    v2_uncached = sys_uncached + msg_uncached
+    parsed      = [r for r in turn_rows if r.get("cache_parse_ok")]
+    total_chars = sum(r["cache_total_chars"]    for r in parsed)
+    cache_read  = sum(r["cache_read_chars"]     for r in parsed)
+    cache_write = sum(r["cache_write_chars"]    for r in parsed)
+    billing_hdr = sum(r["billing_header_chars"] for r in parsed)
+    sys_prompt  = sum(r["system_prompt_chars"]  for r in parsed)
+    tools       = sum(r["tools_chars"]          for r in parsed)
+    prior_hist  = sum(r["prior_history_chars"]  for r in parsed)
+    new_input   = sum(r["new_input_chars"]      for r in parsed)
 
     return {
-        "sessions":                         len(session_rows),
-        "total_llm_calls":                  total_calls,
-        "total_errors":                     total_errors,
-        "error_rate_pct":                   round(total_errors / total_calls * 100, 1),
-        "total_req_mb":                     round(total_req_kb / 1024, 2),
-        "total_resp_mb":                    round(total_resp_kb / 1024, 2),
-        "overall_req_resp_ratio":           round(total_req_kb / max(total_resp_kb, 1), 1),
-        "avg_req_kb_per_call":              round(total_req_kb / total_calls, 1),
-        "median_latency_ms":                latencies[len(latencies) // 2] if latencies else 0,
-        "p95_latency_ms":                   latencies[int(len(latencies) * 0.95)] if latencies else 0,
-        "max_latency_ms":                   max(latencies) if latencies else 0,
-        "avg_req_growth_pct":               round(sum(r["req_growth_pct"] for r in session_rows) / len(session_rows), 1),
-        "max_req_growth_pct":               round(max(r["req_growth_pct"] for r in session_rows), 1),
-        "max_req_growth_session":           max(session_rows, key=lambda r: r["req_growth_pct"])["session_id"],
-        "most_calls_session":               max(session_rows, key=lambda r: r["llm_calls"])["session_id"],
-        "highest_avg_latency_session":      max(session_rows, key=lambda r: r["avg_latency_ms"])["session_id"],
-        "cache_system_cached_chars":        sys_cached,
-        "cache_system_uncached_chars":      sys_uncached,
-        "cache_tools_chars":                tools,
-        "cache_messages_cached_chars":      msg_cached,
-        "cache_messages_uncached_chars":    msg_uncached,
-        "cache_total_chars":                total_chars,
-        "v1_cached_chars":                  v1_cached,
-        "v1_uncached_chars":                v1_uncached,
-        "v1_cached_pct":                   round(v1_cached / max(total_chars, 1) * 100, 1),
-        "v1_uncached_pct":                 round(v1_uncached / max(total_chars, 1) * 100, 1),
-        "v2_cached_chars":                  v2_cached,
-        "v2_uncached_chars":                v2_uncached,
-        "v2_cached_pct":                   round(v2_cached / max(total_chars, 1) * 100, 1),
-        "v2_uncached_pct":                 round(v2_uncached / max(total_chars, 1) * 100, 1),
+        "sessions":                    len(session_rows),
+        "total_llm_calls":             total_calls,
+        "total_errors":                total_errors,
+        "error_rate_pct":              round(total_errors / total_calls * 100, 1),
+        "total_req_mb":                round(total_req_kb / 1024, 2),
+        "total_resp_mb":               round(total_resp_kb / 1024, 2),
+        "overall_req_resp_ratio":      round(total_req_kb / max(total_resp_kb, 1), 1),
+        "avg_req_kb_per_call":         round(total_req_kb / total_calls, 1),
+        "median_latency_ms":           latencies[len(latencies) // 2] if latencies else 0,
+        "p95_latency_ms":              latencies[int(len(latencies) * 0.95)] if latencies else 0,
+        "max_latency_ms":              max(latencies) if latencies else 0,
+        "avg_req_growth_pct":          round(sum(r["req_growth_pct"] for r in session_rows) / len(session_rows), 1),
+        "max_req_growth_pct":          round(max(r["req_growth_pct"] for r in session_rows), 1),
+        "max_req_growth_session":      max(session_rows, key=lambda r: r["req_growth_pct"])["session_id"],
+        "most_calls_session":          max(session_rows, key=lambda r: r["llm_calls"])["session_id"],
+        "highest_avg_latency_session": max(session_rows, key=lambda r: r["avg_latency_ms"])["session_id"],
+        "system_prompt_chars":         sys_prompt,
+        "billing_header_chars":        billing_hdr,
+        "tools_chars":                 tools,
+        "prior_history_chars":         prior_hist,
+        "new_input_chars":             new_input,
+        "cache_read_chars":            cache_read,
+        "cache_write_chars":           cache_write,
+        "cache_total_chars":           total_chars,
+        "cache_read_pct":              round(cache_read  / max(total_chars, 1) * 100, 1),
+        "cache_write_pct":             round(cache_write / max(total_chars, 1) * 100, 1),
+        "billing_header_pct":          round(billing_hdr / max(total_chars, 1) * 100, 1),
     }
 
 def write_csv(rows, path):
@@ -373,26 +378,21 @@ def write_csv(rows, path):
         writer.writerows(rows)
     print(f"  Written: {path}  ({len(rows)} rows)")
 
-def print_cache_block(sys_cached, sys_uncached, tools, msg_cached, msg_uncached, total):
+def print_cache_block(sys_prompt, billing_hdr, tools, prior_hist, new_input, total):
     tc = max(total, 1)
+    cache_read  = sys_prompt + tools + prior_hist
+    cache_write = new_input
     print(f"    {'Category':<30} {'Chars':>12} {'%':>7}")
     print(f"    {'-'*51}")
-    print(f"    {'system  (cached)':30} {sys_cached:>12,}  {sys_cached/tc*100:>6.1f}%")
-    print(f"    {'system  (uncached)':30} {sys_uncached:>12,}  {sys_uncached/tc*100:>6.1f}%")
-    print(f"    {'tools   (no cache_control)':30} {tools:>12,}  {tools/tc*100:>6.1f}%")
-    print(f"    {'messages (cached)':30} {msg_cached:>12,}  {msg_cached/tc*100:>6.1f}%")
-    print(f"    {'messages (uncached)':30} {msg_uncached:>12,}  {msg_uncached/tc*100:>6.1f}%")
+    print(f"    {'system_prompt':30} {sys_prompt:>12,}  {sys_prompt/tc*100:>6.1f}%")
+    print(f"    {'tools':30} {tools:>12,}  {tools/tc*100:>6.1f}%")
+    print(f"    {'prior_history':30} {prior_hist:>12,}  {prior_hist/tc*100:>6.1f}%")
+    print(f"    {'new_input (cache_write)':30} {new_input:>12,}  {new_input/tc*100:>6.1f}%")
+    print(f"    {'billing_header (uncached)':30} {billing_hdr:>12,}  {billing_hdr/tc*100:>6.1f}%")
     print(f"    {'-'*51}")
-    v1c = sys_cached + msg_cached
-    v1u = sys_uncached + tools + msg_uncached
-    v2c = sys_cached + tools + msg_cached
-    v2u = sys_uncached + msg_uncached
-    print(f"    VIEW 1 — tools as UNCACHED (strict):")
-    print(f"      cached:   {v1c:>12,}  {v1c/tc*100:>6.1f}%")
-    print(f"      uncached: {v1u:>12,}  {v1u/tc*100:>6.1f}%")
-    print(f"    VIEW 2 — tools as CACHED (constant content):")
-    print(f"      cached:   {v2c:>12,}  {v2c/tc*100:>6.1f}%")
-    print(f"      uncached: {v2u:>12,}  {v2u/tc*100:>6.1f}%")
+    print(f"    cache_read  (turns 2+): {cache_read:>12,}  {cache_read/tc*100:>6.1f}%")
+    print(f"    cache_write (new input):{cache_write:>12,}  {cache_write/tc*100:>6.1f}%")
+    print(f"    uncached (billing hdr): {billing_hdr:>12,}  {billing_hdr/tc*100:>6.1f}%")
 
 def main():
     events_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("events.json")
@@ -431,27 +431,27 @@ def main():
 
     print("\n=== CACHE ANALYSIS — AGGREGATE (all sessions, all turns) ===")
     print_cache_block(
-        summary["cache_system_cached_chars"],
-        summary["cache_system_uncached_chars"],
-        summary["cache_tools_chars"],
-        summary["cache_messages_cached_chars"],
-        summary["cache_messages_uncached_chars"],
+        summary["system_prompt_chars"],
+        summary["billing_header_chars"],
+        summary["tools_chars"],
+        summary["prior_history_chars"],
+        summary["new_input_chars"],
         summary["cache_total_chars"],
     )
 
     print("\n=== CACHE ANALYSIS — PER SESSION ===")
-    print(f"{'ID':<5} {'Label':<22} {'Turns':>5}  {'SysCach%':>8} {'Tools%':>7} {'MsgCach%':>9} {'MsgUnc%':>8}  {'V1cach%':>7} {'V2cach%':>7}")
-    print("-" * 85)
+    print(f"{'ID':<5} {'Label':<22} {'Turns':>5}  {'SysPrompt%':>10} {'Tools%':>7} {'PriorHist%':>11} {'NewInput%':>10}  {'CacheRead%':>10} {'CacheWrite%':>12}")
+    print("-" * 95)
     for r in session_rows:
         tc = max(r["cache_total_chars"], 1)
         print(
             f"{r['session_id']:<5} {r['label']:<22} {r['llm_calls']:>5}  "
-            f"{r['cache_system_cached_chars']/tc*100:>7.1f}%"
-            f"{r['cache_tools_chars']/tc*100:>8.1f}%"
-            f"{r['cache_messages_cached_chars']/tc*100:>9.1f}%"
-            f"{r['cache_messages_uncached_chars']/tc*100:>9.1f}%"
-            f"  {r['v1_cached_pct']:>7.1f}%"
-            f"  {r['v2_cached_pct']:>7.1f}%"
+            f"{r['system_prompt_chars']/tc*100:>9.1f}%"
+            f"{r['tools_chars']/tc*100:>8.1f}%"
+            f"{r['prior_history_chars']/tc*100:>10.1f}%"
+            f"{r['new_input_chars']/tc*100:>11.1f}%"
+            f"  {r['cache_read_pct']:>9.1f}%"
+            f"  {r['cache_write_pct']:>10.1f}%"
         )
 
     print("\n=== PER SESSION (size metrics) ===")
